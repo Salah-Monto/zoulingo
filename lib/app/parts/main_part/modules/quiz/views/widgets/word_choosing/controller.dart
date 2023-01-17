@@ -23,7 +23,7 @@ class ChooseWordQuistion extends ChangeNotifier {
 
   void submitAnswer() {
     if (isChecked) {
-     _isChecked = false;
+      _isChecked = false;
       notifyListeners();
     } else {
       bool correct1 = selectedAnswer == correctAnswer;
