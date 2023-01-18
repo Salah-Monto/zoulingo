@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:swipeable_card_stack/swipe_controller.dart';
-
 import '../data/models/quistion_model.dart';
 import '../views/widgets/sentance_choosing/sentece_choose.dart';
 
@@ -9,8 +7,6 @@ final senteceQuizController =
     ChangeNotifierProvider<SentenceQuistion>((ref) => SentenceQuistion());
 
 class SentenceQuistion extends ChangeNotifier {
-  SwipeableCardSectionController cardController =
-      SwipeableCardSectionController();
   List<Widget> myCards = const [ChooseWordSentenceCard()];
   String selectedAnswer = '';
   // bool correct = false;

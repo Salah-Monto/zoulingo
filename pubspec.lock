@@ -383,6 +383,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.9.0"
+  sprung:
+    dependency: transitive
+    description:
+      name: sprung
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.1"
   stack_trace:
     dependency: transitive
     description:
@@ -411,13 +418,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.1"
-  swipeable_card_stack:
+  swipable_stack:
     dependency: "direct main"
     description:
-      name: swipeable_card_stack
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.5"
+      path: "."
+      ref: develop
+      resolved-ref: "6a15a97403d8c4603d4c022d973dac0edc82c251"
+      url: "https://github.com/maxzod/flutter_swipable_stack.git"
+    source: git
+    version: "2.0.0"
   term_glyph:
     dependency: transitive
     description:

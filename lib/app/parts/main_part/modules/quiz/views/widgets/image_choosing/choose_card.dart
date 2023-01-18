@@ -5,8 +5,6 @@ import 'package:zoulingo/app/parts/main_part/modules/quiz/views/pages/quiz.view.
 import 'package:zoulingo/app/parts/main_part/modules/quiz/views/widgets/image_choosing/controller.dart';
 import 'package:zoulingo/core/config/utils/colors.dart';
 
-import '../../../data/models/quistion_model.dart';
-
 class ChooseCard extends ConsumerStatefulWidget {
   const ChooseCard({
     Key? key,

@@ -1,28 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:swipeable_card_stack/swipe_controller.dart';
+import 'package:swipable_stack/swipable_stack.dart';
 
+import '../../../../../../../../core/config/mixins/card_controller.dart';
 import '../../../../../../../../core/config/utils/enums.dart';
 import '../sentance_choosing/sentece_choose.dart';
 
 final trueFalseQuistion =
     ChangeNotifierProvider<TrueFalseQuistion>((ref) => TrueFalseQuistion());
 
-class TrueFalseQuistion extends ChangeNotifier {
-  SwipeableCardSectionController cardController =
-      SwipeableCardSectionController();
+class TrueFalseQuistion extends ChangeNotifier with Controller {
   List<Widget> myCards = const [ChooseWordSentenceCard()];
   late QuistionType currentQuestionType;
   bool questionAnswered = false;
 
-  void setCurrentQuestionType(QuistionType type) {
-    currentQuestionType = type;
-    notifyListeners();
-  }
-
   void setQuestionAnswered(bool answered) {
     questionAnswered = answered;
-    notifyListeners();
+    submet();
   }
 
   String word = 'Der Vater';
@@ -33,8 +27,6 @@ class TrueFalseQuistion extends ChangeNotifier {
 
   String _result = "";
 
-  bool _isChecked = false;
-
   // void falseButton() {
   //   bool correct = word != xword;
   //   _result = correct ? "عاااش يابطل جواب صح " : "غلط ياصديقي ";
@@ -43,21 +35,14 @@ class TrueFalseQuistion extends ChangeNotifier {
   // }
 
   void submet() {
-    print("image222");
-    if (isChecked) {
-      cardController.triggerSwipeRight();
-      _isChecked = false;
-      notifyListeners();
-    } else {
-      bool correct = word == xword;
-      _result = correct ? "عاااش يابطل جواب صح " : "غلط ياصديقي ";
-      _buttonPressed = true;
-      _isChecked = true;
-      notifyListeners();
-    }
+    bool correct = word == xword;
+    _result = correct ? "عاااش يابطل جواب صح " : "غلط ياصديقي ";
+    _buttonPressed = true;
+    next();
+
+    notifyListeners();
   }
 
-  bool get isChecked => _isChecked;
   bool get buttonPressed => _buttonPressed;
   String get result => _result;
 }
