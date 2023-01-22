@@ -5,6 +5,7 @@ class Question {
   final List<String>? wrongAnswers;
   final String? image;
   final List<String>? wrongImages;
+  final List<String>? definitions;
   final String? definition;
 
   Question(
@@ -14,5 +15,6 @@ class Question {
       this.wrongAnswers,
       this.image,
       this.definition,
+      this.definitions,
       this.wrongImages});
 }

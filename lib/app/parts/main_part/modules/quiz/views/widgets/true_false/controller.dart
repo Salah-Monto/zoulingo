@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:swipable_stack/swipable_stack.dart';
 
 import '../../../../../../../../core/config/mixins/card_controller.dart';
 import '../../../../../../../../core/config/utils/enums.dart';
-import '../sentance_choosing/sentece_choose.dart';
 
 final trueFalseQuistion =
     ChangeNotifierProvider<TrueFalseQuistion>((ref) => TrueFalseQuistion());
 
 class TrueFalseQuistion extends ChangeNotifier with Controller {
-  List<Widget> myCards = const [ChooseWordSentenceCard()];
   late QuistionType currentQuestionType;
   bool questionAnswered = false;
 

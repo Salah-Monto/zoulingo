@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:swipable_stack/swipable_stack.dart';
+import 'package:zoulingo/app/parts/main_part/modules/quiz/data/models/quistion_model.dart';
 
 import '../../../../../../../../core/config/mixins/card_controller.dart';
 
@@ -8,24 +9,18 @@ final wordQuizController =
     ChangeNotifierProvider<ChooseWordQuistion>((ref) => ChooseWordQuistion());
 
 class ChooseWordQuistion extends ChangeNotifier with Controller {
-  // SwipeableCardSectionController cardController =
-  //     SwipeableCardSectionController();
-  // List<Widget> myCards = const [ChooseWordSentenceCard()];
-
-  String question = 'Der Vater';
-  String correctAnswer = 'أب';
-  List<String> options = ['أب', 'أم', 'أخ', 'أخت'];
+  Question? questionObject1;
   String selectedAnswer = '';
   bool _buttonPressed = false;
   String _result = "";
-  bool _isChecked = false;
+
   void selectOption(String option) {
     selectedAnswer = option;
     submitAnswer();
   }
 
   void submitAnswer() {
-    bool correct1 = selectedAnswer == correctAnswer;
+    bool correct1 = selectedAnswer == questionObject1!.definition;
     _result = correct1 ? "عاااش يابطل جواب صح " : "غلط ياصديقي ";
 
     _buttonPressed = true;
@@ -35,7 +30,6 @@ class ChooseWordQuistion extends ChangeNotifier with Controller {
     notifyListeners();
   }
 
-  bool get isChecked => _isChecked;
   String get result => _result;
   bool get buttonPressed => _buttonPressed;
 }

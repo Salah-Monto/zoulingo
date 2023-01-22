@@ -11,8 +11,7 @@ final senteceQuizController =
     ChangeNotifierProvider<SentenceQuistion>((ref) => SentenceQuistion());
 
 class SentenceQuistion extends ChangeNotifier with Controller {
-  List<Widget> myCards = const [ChooseWordSentenceCard()];
-
+  Question? questionObject1;
   String selectedAnswer = '';
   bool _buttonPressed = false;
   String _result = "";
@@ -22,17 +21,11 @@ class SentenceQuistion extends ChangeNotifier with Controller {
     submitAnswer();
   }
 
-  var question = Question(
-      word: "Der",
-      question: "....... vater ist im work ",
-      wrongAnswers: ["Die", "Der", "Das"]);
-
   void submitAnswer() {
-    bool correct = selectedAnswer == question.word;
+    bool correct = selectedAnswer == questionObject1!.word;
     _result = correct ? "عاااش يابطل جواب صح " : "غلط ياصديقي ";
     _buttonPressed = true;
     next();
-
     notifyListeners();
   }
 

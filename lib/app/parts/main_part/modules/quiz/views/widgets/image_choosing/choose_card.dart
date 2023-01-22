@@ -1,25 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:zoulingo/app/parts/main_part/modules/quiz/controller/quiz.controller.dart';
-import 'package:zoulingo/app/parts/main_part/modules/quiz/views/pages/quiz.view.dart';
 import 'package:zoulingo/app/parts/main_part/modules/quiz/views/widgets/image_choosing/controller.dart';
 import 'package:zoulingo/core/config/utils/colors.dart';
+import '../../../data/models/quistion_model.dart';
 
-class ChooseCard extends ConsumerStatefulWidget {
-  const ChooseCard({
-    Key? key,
-  }) : super(key: key);
+class CardChoice extends StatelessWidget {
+  final bool isActive;
+  final String image;
+  const CardChoice({Key? key, required this.isActive, required this.image})
+      : super(key: key);
 
-  @override
-  ConsumerState<ChooseCard> createState() => _ChooseCardState();
-}
-
-class _ChooseCardState extends ConsumerState<ChooseCard> {
   @override
   Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        border: isActive
+            ? Border.all(color: Colors.blue, width: 5)
+            : const Border(),
+        image: const DecorationImage(
+          image: AssetImage(
+            "assets/images/logo.jpg",
+          ),
+          fit: BoxFit.fill,
+        ),
+      ),
+      child: Center(
+        child: Image.asset(
+          image,
+          height: 120,
+        ),
+      ),
+    );
+  }
+}
+
+class ChooseCard extends ConsumerWidget {
+  final Question questionObject;
+  const ChooseCard({Key? key, required this.questionObject}) : super(key: key);
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
     final controller = ref.watch(cardQuizController);
+    controller.questionObject1 = questionObject;
     return Padding(
       padding: EdgeInsets.symmetric(vertical: h * 0.04),
       child: Container(
@@ -67,12 +91,12 @@ class _ChooseCardState extends ConsumerState<ChooseCard> {
                   itemBuilder: (context, index) {
                     return InkWell(
                       onTap: () {
-                        controller.onCardTapped(
-                            index, controller.question.wrongImages![index]);
+                        controller.onCardTapped(index,
+                            controller.questionObject1!.wrongImages![index]);
                       },
                       child: CardChoice(
                         isActive: controller.selectedIndex == index,
-                        image: controller.question.wrongImages![index],
+                        image: controller.questionObject1!.wrongImages![index],
                       ),
                     );
                   },
@@ -87,37 +111,6 @@ class _ChooseCardState extends ConsumerState<ChooseCard> {
               ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class CardChoice extends StatelessWidget {
-  final bool isActive;
-  final String image;
-  const CardChoice({Key? key, required this.isActive, required this.image})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        border: isActive
-            ? Border.all(color: Colors.blue, width: 5)
-            : const Border(),
-        image: const DecorationImage(
-          image: AssetImage(
-            "assets/images/logo.jpg",
-          ),
-          fit: BoxFit.fill,
-        ),
-      ),
-      child: Center(
-        child: Image.asset(
-          image,
-          height: 120,
         ),
       ),
     );

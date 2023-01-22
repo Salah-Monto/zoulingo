@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:zoulingo/app/parts/main_part/modules/quiz/views/widgets/sentance_choosing/sentece_choose.dart';
 
 import '../../../../../../../../core/config/mixins/card_controller.dart';
 import '../../../data/models/quistion_model.dart';
@@ -9,17 +8,11 @@ final cardQuizController =
     ChangeNotifierProvider<CardQuiz>((ref) => CardQuiz());
 
 class CardQuiz extends ChangeNotifier with Controller {
-  List<Widget> myCards = const [ChooseWordSentenceCard()];
+  Question? questionObject1;
   String selectedAnswer = '';
   bool isSelected = false;
   bool _buttonPressed = false;
   String _result = "";
-  final question = Question(word: "Vater", wrongImages: [
-    "assets/images/woman.png",
-    "assets/images/vater.png",
-    "assets/images/woman.png",
-    "assets/images/woman.png"
-  ]);
   int _selectedIndex = -1;
   String _selectedCardImage = "";
 
@@ -30,7 +23,7 @@ class CardQuiz extends ChangeNotifier with Controller {
   }
 
   void submiteAnswer() {
-    bool correct = _selectedCardImage == question.wrongImages![1];
+    bool correct = _selectedCardImage == questionObject1!.wrongImages![1];
     _result = correct ? "عاااش يابطل جواب صح " : "غلط ياصديقي ";
     _buttonPressed = true;
     next();
