@@ -42,7 +42,7 @@ class ChooseWordSentenceCard extends ConsumerWidget {
                 height: h * 0.05,
               ),
               Text(
-                controller.questionObject.question!,
+                controller.questionObject1!.question!,
                 style: Theme.of(context).textTheme.bodyText1,
               ),
               const Divider(
@@ -56,7 +56,7 @@ class ChooseWordSentenceCard extends ConsumerWidget {
                   child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: Column(children: [
-                  ...controller.questionObject.wrongAnswers!
+                  ...controller.questionObject1!.wrongAnswers!
                       .map((option) => Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(

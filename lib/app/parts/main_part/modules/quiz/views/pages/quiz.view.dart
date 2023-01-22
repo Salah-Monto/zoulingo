@@ -1,27 +1,42 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:swipable_stack/swipable_stack.dart';
 import 'package:zoulingo/core/config/mixins/card_controller.dart';
+import '../../data/models/quistion_model.dart';
 import '../widgets/image_choosing/choose_card.dart';
 import '../widgets/word_choosing/choose_word.dart';
-import '../widgets/flash_card.dart';
 import '../widgets/sentance_choosing/sentece_choose.dart';
 // import '../widgets/smilerties.dart';
-import '../widgets/true_false/true_false.dart';
 
 class QuizView extends ConsumerWidget with Controller {
   QuizView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    List<Widget> questionTypes = [
-      const FlashCards(),
-      ChooseCard(questionObject: questionObject),
-      ChooseWordCard(questionObject: questionObject),
-      const TrueFlaseCard(),
-      ChooseWordSentenceCard(questionObject: questionObject),
-    ];
+    List<Widget> generateQuestionTypes(List<Question> questions) {
+      List<Widget> questionTypes = [];
+      for (int i = 0; i < 3; i++) {
+        for (final question in questions) {
+          questionTypes.add(ChooseCard(questionObject: question));
+          questionTypes.add(ChooseWordCard(questionObject: question));
+          questionTypes.add(ChooseWordSentenceCard(questionObject: question));
+        }
+      }
+      return questionTypes;
+    }
+
+    List<Widget> questionTypes = generateQuestionTypes(questions);
+    // List<Widget> questionTypes = [
+    //   ChooseCard(questionObject: quistioins.first),
+    //   ChooseWordCard(questionObject: quistioins[1]),
+    //   ChooseWordSentenceCard(questionObject: quistioins.last),
+    //   ChooseCard(questionObject: quistioins[1]),
+    //   ChooseWordCard(questionObject: quistioins.last),
+    //   ChooseWordSentenceCard(questionObject: quistioins.first),
+    //   ChooseCard(questionObject: quistioins.last),
+    //   ChooseWordCard(questionObject: quistioins.first),
+    //   ChooseWordSentenceCard(questionObject: quistioins[1]),
+    // ];
     return SafeArea(
       child: Scaffold(
         body: Container(

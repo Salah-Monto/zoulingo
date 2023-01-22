@@ -70,7 +70,7 @@ class ChooseCard extends ConsumerWidget {
                 height: h * 0.02,
               ),
               Text(
-                "Der Vater",
+                controller.questionObject1!.word,
                 style: Theme.of(context).textTheme.headline5,
               ),
               const Divider(
