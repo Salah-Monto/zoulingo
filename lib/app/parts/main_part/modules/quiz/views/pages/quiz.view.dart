@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:swipable_stack/swipable_stack.dart';
@@ -8,22 +10,34 @@ import '../widgets/word_choosing/choose_word.dart';
 import '../widgets/sentance_choosing/sentece_choose.dart';
 // import '../widgets/smilerties.dart';
 
+// ignore: must_be_immutable
 class QuizView extends ConsumerWidget with Controller {
   QuizView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     List<Widget> generateQuestionTypes(List<Question> questions) {
-      List<Widget> questionTypes = [];
-      for (int i = 0; i < 3; i++) {
-        for (final question in questions) {
-          questionTypes.add(ChooseCard(questionObject: question));
-          questionTypes.add(ChooseWordCard(questionObject: question));
-          questionTypes.add(ChooseWordSentenceCard(questionObject: question));
-        }
-      }
-      return questionTypes;
+      return [
+        for (var i = 0; i < 3; i++) ChooseCard(questionObject: questions[i]),
+        for (var i = 0; i < 3; i++)
+          ChooseWordCard(questionObject: questions[i]),
+        for (var i = 0; i < 3; i++)
+          ChooseWordSentenceCard(questionObject: questions[i]),
+      ];
     }
+
+    // List<Widget> generateQuestionTypes(List<Question> questions) {
+    //   var random = Random();
+    //   questions.shuffle(random);
+    //   return [
+    //     for (var i = 0; i < 3 && i < questions.length; i++)
+    //       ChooseCard(questionObject: questions[i]),
+    //     for (var i = 0; i < 3 && i < questions.length; i++)
+    //       ChooseWordCard(questionObject: questions[i]),
+    //     for (var i = 0; i < 3 && i < questions.length; i++)
+    //       ChooseWordSentenceCard(questionObject: questions[i]),
+    //   ];
+    // }
 
     List<Widget> questionTypes = generateQuestionTypes(questions);
     // List<Widget> questionTypes = [
