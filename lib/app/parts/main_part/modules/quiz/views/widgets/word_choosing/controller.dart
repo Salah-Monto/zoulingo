@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:swipable_stack/swipable_stack.dart';
 import 'package:zoulingo/app/parts/main_part/modules/quiz/data/models/quistion_model.dart';
 
 import '../../../../../../../../core/config/mixins/card_controller.dart';
@@ -22,11 +21,8 @@ class ChooseWordQuistion extends ChangeNotifier with Controller {
   void submitAnswer() {
     bool correct1 = selectedAnswer == questionObject1!.definition;
     _result = correct1 ? "عاااش يابطل جواب صح " : "غلط ياصديقي ";
-
     _buttonPressed = true;
-
-    next();
-
+    // next();
     notifyListeners();
   }
 

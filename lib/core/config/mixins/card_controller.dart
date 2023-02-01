@@ -3,7 +3,8 @@ import 'package:swipable_stack/swipable_stack.dart';
 import '../../../app/parts/main_part/modules/quiz/data/models/quistion_model.dart';
 
 mixin Controller {
-  final controller = SwipableStackController();
+  final controller1 = SwipableStackController();
+  // final PageController controller = PageController();
   List<Question> questions = [
     Question(
         word: "Der Vater",
@@ -42,12 +43,10 @@ mixin Controller {
         ],
         wrongAnswers: ["Katze", "Glas", "Tisch", " Hund"])
   ];
-  void next() {
-    Future.delayed(
-        const Duration(seconds: 2),
-        () => controller.next(
-            ignoreOnWillMoveNext: true,
-            swipeDirection: SwipeDirection.right,
-            duration: const Duration(milliseconds: 500)));
-  }
+  // void next() {
+  //   Future.delayed(
+  //       const Duration(seconds: 2),
+  //       () => controller.nextPage(
+  //           duration: const Duration(milliseconds: 250), curve: Curves.ease));
+  // }
 }

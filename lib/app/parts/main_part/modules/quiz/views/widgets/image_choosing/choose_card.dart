@@ -42,8 +42,9 @@ class ChooseCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
-    final controller = ref.watch(cardQuizController);
-    controller.questionObject1 = questionObject;
+    final controller1 = ref.watch(cardQuizController);
+    controller1.questionObject1 = questionObject;
+
     return Padding(
       padding: EdgeInsets.symmetric(vertical: h * 0.04),
       child: Container(
@@ -70,7 +71,7 @@ class ChooseCard extends ConsumerWidget {
                 height: h * 0.02,
               ),
               Text(
-                controller.questionObject1!.word,
+                controller1.questionObject1!.word,
                 style: Theme.of(context).textTheme.headline5,
               ),
               const Divider(
@@ -91,22 +92,26 @@ class ChooseCard extends ConsumerWidget {
                   itemBuilder: (context, index) {
                     return InkWell(
                       onTap: () {
-                        controller.onCardTapped(index,
-                            controller.questionObject1!.wrongImages![index]);
+                        controller1.onCardTapped(index,
+                            controller1.questionObject1!.wrongImages![index]);
                       },
                       child: CardChoice(
-                        isActive: controller.selectedIndex == index,
-                        image: controller.questionObject1!.wrongImages![index],
+                        isActive: controller1.selectedIndex == index,
+                        image: controller1.questionObject1!.wrongImages![index],
                       ),
                     );
                   },
                 ),
               ),
               Visibility(
-                visible: controller.buttonPressed,
-                child: Text(
-                  controller.result,
-                  style: Theme.of(context).textTheme.bodyText2,
+                visible: controller1.buttonPressed,
+                child: Column(
+                  children: [
+                    Text(
+                      controller1.result,
+                      style: Theme.of(context).textTheme.bodyText2,
+                    ),
+                  ],
                 ),
               ),
             ],

@@ -35,7 +35,6 @@ class TrueFalseQuistion extends ChangeNotifier with Controller {
     bool correct = word == xword;
     _result = correct ? "عاااش يابطل جواب صح " : "غلط ياصديقي ";
     _buttonPressed = true;
-    next();
 
     notifyListeners();
   }

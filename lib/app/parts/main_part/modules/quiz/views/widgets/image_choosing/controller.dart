@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../../../../../core/config/mixins/card_controller.dart';
 import '../../../data/models/quistion_model.dart';
 
 final cardQuizController =
     ChangeNotifierProvider<CardQuiz>((ref) => CardQuiz());
 
-class CardQuiz extends ChangeNotifier with Controller {
+class CardQuiz extends ChangeNotifier {
+  final PageController pageController;
+  CardQuiz() : pageController = PageController();
   Question? questionObject1;
   String selectedAnswer = '';
   bool isSelected = false;
@@ -15,6 +16,12 @@ class CardQuiz extends ChangeNotifier with Controller {
   String _result = "";
   int _selectedIndex = -1;
   String _selectedCardImage = "";
+  void next() {
+    Future.delayed(
+        const Duration(seconds: 2),
+        () => pageController.nextPage(
+            duration: const Duration(milliseconds: 250), curve: Curves.ease));
+  }
 
   void onCardTapped(int index, String image) {
     _selectedIndex = index;
