@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../../../../../core/config/mixins/card_controller.dart';
 import '../../../data/models/quistion_model.dart';
 
 final cardQuizController =
     ChangeNotifierProvider<CardQuiz>((ref) => CardQuiz());
 
-class CardQuiz extends ChangeNotifier {
+class CardQuiz extends ChangeNotifier with Controller {
   final PageController pageController;
   // final ChooseWordQuistion chooseWordQuestion = ChooseWordQuistion();
   // final SentenceQuistion sentenceQuistion = SentenceQuistion();
@@ -18,10 +19,14 @@ class CardQuiz extends ChangeNotifier {
   String _result = "";
   int _selectedIndex = -1;
   String _selectedCardImage = "";
+  bool _choiceMade = false;
+  double quistionItemLentgh = 0;
   void next() {
     Future.delayed(const Duration(seconds: 2), () {
       pageController.nextPage(
           duration: const Duration(milliseconds: 350), curve: Curves.ease);
+      updateTheQnStatus();
+
       selectedAnswer = '';
       isSelected = false;
       _buttonPressed = false;
@@ -29,13 +34,25 @@ class CardQuiz extends ChangeNotifier {
       _selectedIndex = -1;
       _selectedCardImage = "";
       questionObject1 = null;
+      _choiceMade = false;
     });
   }
 
   void onCardTapped(int index, String image) {
+    if (_choiceMade) {
+      return;
+    }
     _selectedIndex = index;
     _selectedCardImage = image;
+    _choiceMade = true;
     submitAnswer();
+  }
+
+  void updateTheQnStatus() {
+    int len = questions.length * 3;
+    double qnumber = 1 / (len);
+    quistionItemLentgh += qnumber;
+    notifyListeners();
   }
 
   void submitAnswer() {
@@ -47,12 +64,21 @@ class CardQuiz extends ChangeNotifier {
   }
 
   void selectOption(String option) {
+    if (_choiceMade) {
+      return;
+    }
+
     selectedAnswer = option;
+    _choiceMade = true;
     submitAnswer1();
   }
 
   void selectOption2(String option) {
+    if (_choiceMade) {
+      return;
+    }
     selectedAnswer = option;
+    _choiceMade = true;
     submitAnswer2();
   }
 

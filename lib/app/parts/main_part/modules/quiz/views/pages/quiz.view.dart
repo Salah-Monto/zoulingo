@@ -26,12 +26,11 @@ class QuizView extends ConsumerWidget with Controller {
     }
 
     List<Widget> questionTypes = generateQuestionTypes(questions);
-    final controller1 = ref.watch(cardQuizController);
-    // final PageController controller = PageController();
+    final controller = ref.watch(cardQuizController);
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          // Fluttter show the back button automatically
           backgroundColor: Colors.transparent,
           elevation: 0,
           actions: [
@@ -49,15 +48,38 @@ class QuizView extends ConsumerWidget with Controller {
             padding: const EdgeInsets.all(8),
             child: Column(
               children: [
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10),
-                  child: ProgressBar(),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Container(
+                      width: double.infinity,
+                      height: 35,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                            color: const Color(0xFF3F4768), width: 3),
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                      child: Stack(
+                        children: [
+                          LayoutBuilder(
+                            builder: (context, constraints) => Container(
+                              width: constraints.maxWidth *
+                                  controller.quistionItemLentgh,
+                              decoration: BoxDecoration(
+                                color: AppColors.babyBlue,
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                            ),
+                          ),
+                        ],
+                        //     );
+                        //   },
+                      )),
                 ),
                 Expanded(
                   child: PageView.builder(
                     physics: const NeverScrollableScrollPhysics(),
-                    controller: controller1.pageController,
-                    // onPageChanged: _questionController.updateTheQnNum,
+                    controller: controller.pageController,
+                    //  onPageChanged: controller.updateTheQnStatus,
                     itemCount: questionTypes.length,
                     itemBuilder: (context, index) => Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -100,43 +122,16 @@ class QuizView extends ConsumerWidget with Controller {
   }
 }
 
-class ProgressBar extends StatelessWidget {
-  const ProgressBar({
-    Key? key,
-  }) : super(key: key);
+// class ProgressBar extends StatelessWidget {
+//   const ProgressBar({
+//     Key? key,
+//   }) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        width: double.infinity,
-        height: 35,
-        decoration: BoxDecoration(
-          border: Border.all(color: const Color(0xFF3F4768), width: 3),
-          borderRadius: BorderRadius.circular(50),
-        ),
-        child:
-            //  GetBuilder<QuestionController>(
-            //   init: QuestionController(),
-            //   builder: (controller) {
-            //     return
-            Stack(
-          children: [
-            LayoutBuilder(
-              builder: (context, constraints) => Container(
-                // from 0 to 1 it takes 60s
-                width: constraints.maxWidth * 0.5,
-                decoration: BoxDecoration(
-                  color: AppColors.babyBlue,
-                  borderRadius: BorderRadius.circular(50),
-                ),
-              ),
-            ),
-          ],
-          //     );
-          //   },
-        ));
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return
+//   }
+// }
  // List<Widget> questionTypes = [
     //   ChooseCard(questionObject: quistioins.first),
     //   ChooseWordCard(questionObject: quistioins[1]),
