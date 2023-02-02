@@ -9,23 +9,23 @@ final senteceQuizController =
 
 class SentenceQuistion extends ChangeNotifier with Controller {
   Question? questionObject1;
-  String selectedAnswer = '';
-  bool _buttonPressed = false;
-  String _result = "";
+  // String selectedAnswer = '';
+  // bool _buttonPressed = false;
+  // String _result = "";
 
-  void selectOption(String option) {
-    selectedAnswer = option;
-    submitAnswer();
-  }
+  // void selectOption(String option) {
+  //   selectedAnswer = option;
+  //   submitAnswer();
+  // }
 
-  void submitAnswer() {
-    bool correct = selectedAnswer == questionObject1!.word;
-    _result = correct ? "عاااش يابطل جواب صح " : "غلط ياصديقي ";
-    _buttonPressed = true;
-    // next();
-    notifyListeners();
-  }
+  // void submitAnswer() {
+  //   bool correct = selectedAnswer == questionObject1!.word;
+  //   _result = correct ? "عاااش يابطل جواب صح " : "غلط ياصديقي ";
+  //   _buttonPressed = true;
+  //   // next();
+  //   notifyListeners();
+  // }
 
-  bool get buttonPressed => _buttonPressed;
-  String get result => _result;
+  // bool get buttonPressed => _buttonPressed;
+  // String get result => _result;
 }

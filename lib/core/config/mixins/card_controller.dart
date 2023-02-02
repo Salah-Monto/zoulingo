@@ -7,7 +7,7 @@ mixin Controller {
   // final PageController controller = PageController();
   List<Question> questions = [
     Question(
-        word: "Der Vater",
+        word: "Vater",
         definition: 'أب',
         definitions: ['أب', 'أم', 'أخ', 'أخت'],
         question: "....... ist im work ",
@@ -17,9 +17,9 @@ mixin Controller {
           "assets/images/woman.png",
           "assets/images/woman.png"
         ],
-        wrongAnswers: ["Die Mutter", "Der Vater", "Das Kind", "Dos"]),
+        options: ["Die Mutter", "Vater", "Das Kind", "Dos"]),
     Question(
-        word: "Das Haus",
+        word: "Haus",
         definition: 'المنزل',
         definitions: ['المنزل', 'الشارع', 'الجامعة', 'المدرسة'],
         question: "Ich wohne in einem .......",
@@ -29,9 +29,9 @@ mixin Controller {
           "assets/images/woman.png",
           "assets/images/woman.png"
         ],
-        wrongAnswers: [" Haus", "Cafe", "Bibliothek", "Fitnessstudio"]),
+        options: ["Haus", "Cafe", "Bibliothek", "Fitnessstudio"]),
     Question(
-        word: "Der Hund",
+        word: "Hund",
         definition: 'الكلب',
         definitions: ['الكلب', 'القط', 'الزجاج', 'الجداول'],
         question: "Ich habe einen .......",
@@ -41,7 +41,7 @@ mixin Controller {
           "assets/images/woman.png",
           "assets/images/woman.png"
         ],
-        wrongAnswers: ["Katze", "Glas", "Tisch", " Hund"])
+        options: ["Katze", "Glas", "Tisch", "Hund"])
   ];
   // void next() {
   //   Future.delayed(

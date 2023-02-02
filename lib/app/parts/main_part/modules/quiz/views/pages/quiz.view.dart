@@ -19,9 +19,9 @@ class QuizView extends ConsumerWidget with Controller {
       return [
         for (var i = 0; i < 3; i++) ChooseCard(questionObject: questions[i]),
         for (var i = 0; i < 3; i++)
-          ChooseWordCard(questionObject: questions[i]),
-        for (var i = 0; i < 3; i++)
           ChooseWordSentenceCard(questionObject: questions[i]),
+        for (var i = 0; i < 3; i++)
+          ChooseWordCard(questionObject: questions[i]),
       ];
     }
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:zoulingo/app/parts/main_part/modules/quiz/views/widgets/word_choosing/controller.dart';
+import 'package:zoulingo/app/parts/main_part/modules/quiz/views/widgets/image_choosing/controller.dart';
 import 'package:zoulingo/core/config/utils/colors.dart';
 
 import '../../../data/models/quistion_model.dart';
@@ -13,7 +13,8 @@ class ChooseWordCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
-    final controller = ref.watch(wordQuizController);
+    // final controller = ref.watch(wordQuizController);
+    final controller = ref.watch(cardQuizController);
     controller.questionObject1 = questionObject;
     return Padding(
       padding: EdgeInsets.symmetric(vertical: h * 0.04),
@@ -75,7 +76,7 @@ class ChooseWordCard extends ConsumerWidget {
                                   activeColor: AppColors.primary,
                                   dense: false,
                                   onChanged: (value) {
-                                    controller.selectOption(value!);
+                                    controller.selectOption2(value!);
                                   },
                                   title: Text(
                                     option,

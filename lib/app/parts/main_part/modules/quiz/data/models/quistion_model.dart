@@ -2,7 +2,7 @@ class Question {
   final int? id;
   final String word;
   final String? question;
-  final List<String>? wrongAnswers;
+  final List<String>? options;
   final String? image;
   final List<String>? wrongImages;
   final List<String>? definitions;
@@ -12,7 +12,7 @@ class Question {
       {this.id,
       required this.word,
       this.question,
-      this.wrongAnswers,
+      this.options,
       this.image,
       this.definition,
       this.definitions,

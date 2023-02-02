@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:zoulingo/app/parts/main_part/modules/quiz/views/widgets/sentance_choosing/conroller.dart';
+import 'package:zoulingo/app/parts/main_part/modules/quiz/views/widgets/image_choosing/controller.dart';
 import 'package:zoulingo/core/config/utils/colors.dart';
 
 import '../../../data/models/quistion_model.dart';
@@ -14,7 +14,8 @@ class ChooseWordSentenceCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
-    final controller = ref.watch(senteceQuizController);
+    // final controller = ref.watch(senteceQuizController);
+    final controller = ref.watch(cardQuizController);
     controller.questionObject1 = questionObject;
     return Padding(
       padding: EdgeInsets.symmetric(vertical: h * 0.04),
@@ -56,7 +57,7 @@ class ChooseWordSentenceCard extends ConsumerWidget {
                   child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: Column(children: [
-                  ...controller.questionObject1!.wrongAnswers!
+                  ...controller.questionObject1!.options!
                       .map((option) => Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
