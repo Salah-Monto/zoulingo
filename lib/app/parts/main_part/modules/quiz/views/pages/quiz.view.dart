@@ -5,6 +5,7 @@ import 'package:zoulingo/core/config/utils/colors.dart';
 import '../../data/models/quistion_model.dart';
 import '../widgets/image_choosing/choose_card.dart';
 import '../widgets/image_choosing/controller.dart';
+import '../widgets/true_false/true_false.dart';
 import '../widgets/word_choosing/choose_word.dart';
 import '../widgets/sentance_choosing/sentece_choose.dart';
 // import '../widgets/smilerties.dart';
@@ -22,6 +23,7 @@ class QuizView extends ConsumerWidget with Controller {
           ChooseWordSentenceCard(questionObject: questions[i]),
         for (var i = 0; i < 3; i++)
           ChooseWordCard(questionObject: questions[i]),
+        for (var i = 0; i < 3; i++) TrueFlaseCard(questionObject: questions[i]),
       ];
     }
 

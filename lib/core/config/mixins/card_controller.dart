@@ -8,6 +8,7 @@ mixin Controller {
   List<Question> questions = [
     Question(
         word: "Vater",
+        xword: "Vater",
         definition: 'أب',
         definitions: ['أب', 'أم', 'أخ', 'أخت'],
         question: "....... ist im work ",
@@ -20,6 +21,7 @@ mixin Controller {
         options: ["Die Mutter", "Vater", "Das Kind", "Dos"]),
     Question(
         word: "Haus",
+        xword: "Haus",
         definition: 'المنزل',
         definitions: ['المنزل', 'الشارع', 'الجامعة', 'المدرسة'],
         question: "Ich wohne in einem .......",
@@ -32,6 +34,7 @@ mixin Controller {
         options: ["Haus", "Cafe", "Bibliothek", "Fitnessstudio"]),
     Question(
         word: "Hund",
+        xword: "Hund",
         definition: 'الكلب',
         definitions: ['الكلب', 'القط', 'الزجاج', 'الجداول'],
         question: "Ich habe einen .......",

@@ -1,6 +1,8 @@
 class Question {
   final int? id;
+
   final String word;
+  final String? xword;
   final String? question;
   final List<String>? options;
   final String? image;
@@ -11,6 +13,7 @@ class Question {
   Question(
       {this.id,
       required this.word,
+      this.xword,
       this.question,
       this.options,
       this.image,

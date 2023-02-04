@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:zoulingo/app/parts/main_part/modules/quiz/views/widgets/true_false/controller.dart';
 import 'package:zoulingo/core/config/utils/colors.dart';
 
+import '../../../data/models/quistion_model.dart';
+import '../image_choosing/controller.dart';
+
 class TrueFlaseCard extends ConsumerWidget {
-  const TrueFlaseCard({
-    Key? key,
-  }) : super(key: key);
+  final Question questionObject;
+  const TrueFlaseCard({Key? key, required this.questionObject})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final controller = ref.watch(trueFalseQuistion);
-
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
+
+    final controller = ref.watch(cardQuizController);
+    controller.questionObject1 = questionObject;
     return Padding(
       padding: EdgeInsets.symmetric(vertical: h * 0.04),
       child: Container(
@@ -35,9 +38,9 @@ class TrueFlaseCard extends ConsumerWidget {
                       color: AppColors.secondPrimary),
                 ),
               ),
-              Image.asset("assets/images/vater.png"),
+              // Image.asset("assets/images/vater.png"),
               Text(
-                controller.difin,
+                questionObject.definition!,
                 style: Theme.of(context).textTheme.headline5,
               ),
               const Divider(
@@ -45,7 +48,7 @@ class TrueFlaseCard extends ConsumerWidget {
                 indent: 20,
               ),
               Text(
-                controller.word,
+                controller.chooseRandomQuestion(),
                 style: Theme.of(context).textTheme.headline5,
               ),
               Row(
@@ -56,12 +59,12 @@ class TrueFlaseCard extends ConsumerWidget {
                     width: w * 0.35,
                     child: ElevatedButton(
                       onPressed: () {
-                        // controller.trueButton();
+                        controller.checkAnswer(true);
                       },
                       style: ElevatedButton.styleFrom(
                         shape: const StadiumBorder(),
                       ),
-                      child: const Text('True'),
+                      child: const Text('صح'),
                     ),
                   ),
                   SizedBox(
@@ -69,23 +72,16 @@ class TrueFlaseCard extends ConsumerWidget {
                     width: w * 0.35,
                     child: ElevatedButton(
                       onPressed: () {
-                        // controller.s();
+                        controller.checkAnswer(false);
                       },
                       style: ElevatedButton.styleFrom(
                         shape: const StadiumBorder(),
                         backgroundColor: Colors.red,
                       ),
-                      child: const Text('Flase'),
+                      child: const Text('خطأ'),
                     ),
                   ),
                 ],
-              ),
-              Visibility(
-                visible: controller.buttonPressed,
-                child: Text(
-                  controller.result,
-                  style: Theme.of(context).textTheme.bodyText2,
-                ),
               ),
               Visibility(
                 visible: controller.buttonPressed,
