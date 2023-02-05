@@ -16,8 +16,10 @@ class QuizView extends ConsumerWidget with Controller {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final controller = ref.watch(cardQuizController);
     List<Widget> generateQuestionTypes(List<Question> questions) {
-      return [
+      // List<Question> wrongQuestions = controller.wrongQuistions;
+      var questionTypes = [
         for (var i = 0; i < 3; i++) ChooseCard(questionObject: questions[i]),
         for (var i = 0; i < 3; i++)
           ChooseWordSentenceCard(questionObject: questions[i]),
@@ -25,10 +27,17 @@ class QuizView extends ConsumerWidget with Controller {
           ChooseWordCard(questionObject: questions[i]),
         for (var i = 0; i < 3; i++) TrueFlaseCard(questionObject: questions[i]),
       ];
+      // if (controller.wrongQuistions.isNotEmpty) {
+      //   var wrongQuestionTypes = [
+      //     for (var i = 0; i < 3; i++)
+      //       ChooseWordCard(questionObject: wrongQuestions[i]),
+      //   ];
+      //   questionTypes.addAll(wrongQuestionTypes);
+      // }
+      return questionTypes;
     }
 
     List<Widget> questionTypes = generateQuestionTypes(questions);
-    final controller = ref.watch(cardQuizController);
 
     return SafeArea(
       child: Scaffold(
@@ -81,8 +90,8 @@ class QuizView extends ConsumerWidget with Controller {
                   child: PageView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     controller: controller.pageController,
-                    //  onPageChanged: controller.updateTheQnStatus,
-                    itemCount: questionTypes.length,
+                    onPageChanged: controller.updateTheQnNum,
+                    // itemCount: questionTypes.length,
                     itemBuilder: (context, index) => Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: questionTypes[index],
@@ -92,56 +101,20 @@ class QuizView extends ConsumerWidget with Controller {
               ],
             ),
           ),
-          // Stack(
-          //   children: [
-          //     SwipableStack(
-          //       itemCount: questionTypes.length,
-          //       controller: controller,
-          //       builder: (
-          //         context,
-          //         swipeProperty,
-          //       ) {
-          //         return Padding(
-          //           padding: const EdgeInsets.all(16),
-          //           child: Card(
-          //             shape: RoundedRectangleBorder(
-          //                 borderRadius: BorderRadius.circular(30)),
-          //             child: questionTypes[swipeProperty.index],
-          //           ),
-          //         );
-          //       },
-          //     ),
-          //     OutlinedButton(
-          //         onPressed: () {
-          //           controller.next(swipeDirection: SwipeDirection.right);
-          //         },
-          //         child: const Text("hahaha"))
-          //   ],
-          // ),
         ),
       ),
     );
   }
 }
 
-// class ProgressBar extends StatelessWidget {
-//   const ProgressBar({
-//     Key? key,
-//   }) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return
-//   }
-// }
- // List<Widget> questionTypes = [
-    //   ChooseCard(questionObject: quistioins.first),
-    //   ChooseWordCard(questionObject: quistioins[1]),
-    //   ChooseWordSentenceCard(questionObject: quistioins.last),
-    //   ChooseCard(questionObject: quistioins[1]),
-    //   ChooseWordCard(questionObject: quistioins.last),
-    //   ChooseWordSentenceCard(questionObject: quistioins.first),
-    //   ChooseCard(questionObject: quistioins.last),
-    //   ChooseWordCard(questionObject: quistioins.first),
-    //   ChooseWordSentenceCard(questionObject: quistioins[1]),
-    // ];
+// List<Widget> questionTypes = [
+//   ChooseCard(questionObject: quistioins.first),
+//   ChooseWordCard(questionObject: quistioins[1]),
+//   ChooseWordSentenceCard(questionObject: quistioins.last),
+//   ChooseCard(questionObject: quistioins[1]),
+//   ChooseWordCard(questionObject: quistioins.last),
+//   ChooseWordSentenceCard(questionObject: quistioins.first),
+//   ChooseCard(questionObject: quistioins.last),
+//   ChooseWordCard(questionObject: quistioins.first),
+//   ChooseWordSentenceCard(questionObject: quistioins[1]),
+// ];

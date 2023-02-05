@@ -22,20 +22,35 @@ class CardQuiz extends ChangeNotifier with Controller {
   String _selectedCardImage = "";
   bool _choiceMade = false;
   double quistionItemLentgh = 0;
+  int _questionNumber = 1;
+  final int _questionsLength = 12;
+
+  // int get questionNumber => this._questionNumber;
   void next() {
-    Future.delayed(const Duration(seconds: 2), () {
-      pageController.nextPage(
-          duration: const Duration(milliseconds: 350), curve: Curves.ease);
-      updateTheQnStatus();
-      selectedAnswer = '';
-      isSelected = false;
-      _buttonPressed = false;
-      _result = "";
-      _selectedIndex = -1;
-      _selectedCardImage = "";
-      questionObject1 = null;
-      _choiceMade = false;
-    });
+    if (_questionNumber != _questionsLength) {
+      Future.delayed(const Duration(seconds: 2), () {
+        pageController.nextPage(
+            duration: const Duration(milliseconds: 400), curve: Curves.ease);
+        updateTheQnStatus();
+
+        selectedAnswer = '';
+        isSelected = false;
+        _buttonPressed = false;
+        _result = "";
+        _selectedIndex = -1;
+        _selectedCardImage = "";
+        questionObject1 = null;
+        _choiceMade = false;
+      });
+    } else if (wrongQuistions.isNotEmpty) {
+      // Get package provide us simple way to naviigate another page
+
+    }
+  }
+
+  void updateTheQnNum(int index) {
+    _questionNumber = index + 1;
+    notifyListeners();
   }
 
   void checkAnswer(bool userAnswer) {
