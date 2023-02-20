@@ -2,6 +2,7 @@ class Question {
   final int? id;
 
   final String word;
+  final String article;
   int? qType;
   final String? question;
   final List<String>? options;
@@ -12,6 +13,7 @@ class Question {
 
   Question(
       {this.id,
+      required this.article,
       required this.word,
       this.qType,
       this.question,

@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:zoulingo/app/parts/main_part/modules/quiz/views/widgets/flash_card.dart';
 import 'package:zoulingo/app/parts/main_part/modules/quiz/views/widgets/image_choosing/choose_card.dart';
 import 'package:zoulingo/app/parts/main_part/modules/quiz/views/widgets/true_false/true_false.dart';
 
@@ -29,11 +30,15 @@ class CardQuiz extends ChangeNotifier with Controller {
   double quistionItemLentgh = 0;
   int numberOfPage = 0;
   String word = "";
+  bool choiceMad = false;
+
   // final int _questionNumber = 1;
 
   List<Widget> generateQuestionTypes(List<Question> questions) {
     List<Question> wrongQuestions = wrongQuistions;
+
     var questionTypes = [
+      FLashCardsView(),
       for (var i = 0; i < questions.length; i++)
         ChooseCard(questionObject: questions[i]),
       for (var i = 0; i < questions.length; i++)
@@ -98,28 +103,33 @@ class CardQuiz extends ChangeNotifier with Controller {
     // print(word + questionObject1!.word);
     if (_choiceMade) {
       return;
-    }
-    bool correct;
-    if (word == questionObject1!.word) {
-      correct = true;
     } else {
-      correct = false;
+      bool correct;
+      if (word == questionObject1!.word) {
+        correct = true;
+      } else {
+        correct = false;
+      }
+      if (userAnswer == correct) {
+        _result = "عاااش يابطل جواب صح";
+        // wrongQuistions.remove(questionObject1!);
+        // print(wrongQuistions.length);
+      } else {
+        _result = "خطأ ياصديقي ";
+        addWrongQuestion(correct, questionObject1!, 1);
+      }
+
+      next();
+      _choiceMade = true;
+      _buttonPressed = true;
+      notifyListeners();
     }
-    if (userAnswer == correct) {
-      _result = "عاااش يابطل جواب صح";
-    } else {
-      _result = "خطأ ياصديقي ";
-    }
-    addWrongQuestion(correct, questionObject1!, 1);
-    next();
-    _choiceMade = true;
-    _buttonPressed = true;
-    notifyListeners();
   }
 
   String chooseRandomQuestion() {
     int randomIndex = Random().nextInt(questions.length);
     word = questions[randomIndex].word;
+    choiceMad = true;
     return word;
   }
 
@@ -143,18 +153,20 @@ class CardQuiz extends ChangeNotifier with Controller {
   void addWrongQuestion(
       bool correctAnswer, Question wrongQuestion, int qTypeNumber) {
     if (!correctAnswer) {
-      var newWrongQuestions = wrongQuistions.toSet().toList();
+      var newWrongQuestions = wrongQuistions.toList();
       newWrongQuestions.add(wrongQuestion);
       wrongQuistions = newWrongQuestions;
       wrongQuestion.qType = qTypeNumber;
-      // print(wrongQuistions.length);
+      print(wrongQuistions.length);
     }
   }
 
   void submitAnswer() {
     bool correct = _selectedCardImage == questionObject1!.wrongImages![1];
     _result = correct ? "عاااش يابطل جواب صح " : "خطأ ياصديقي ";
-
+    if (correct) {
+      wrongQuistions.remove(questionObject1!);
+    }
     addWrongQuestion(correct, questionObject1!, 0);
     _buttonPressed = true;
     next();
@@ -183,6 +195,10 @@ class CardQuiz extends ChangeNotifier with Controller {
   void submitAnswer2() {
     bool correct1 = selectedAnswer == questionObject1!.definition;
     _result = correct1 ? "عاااش يابطل جواب صح " : "غلط ياصديقي ";
+    // if (correct1) {
+    //   wrongQuistions.remove(questionObject1!);
+    //   print(wrongQuistions.length);
+    // }
     _buttonPressed = true;
     addWrongQuestion(correct1, questionObject1!, 2);
     next();
@@ -192,6 +208,10 @@ class CardQuiz extends ChangeNotifier with Controller {
   void submitAnswer1() {
     bool correct = selectedAnswer == questionObject1!.word;
     _result = correct ? "عاااش يابطل جواب صح " : "خطأ ياصديقي ";
+    // if (correct) {
+    //   wrongQuistions.remove(questionObject1!);
+    //   print(wrongQuistions.length);
+    // }
     _buttonPressed = true;
     addWrongQuestion(correct, questionObject1!, 3);
     next();

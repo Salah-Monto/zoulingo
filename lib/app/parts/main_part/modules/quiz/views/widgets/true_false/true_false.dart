@@ -6,9 +6,9 @@ import '../../../data/models/quistion_model.dart';
 import '../image_choosing/controller.dart';
 
 class TrueFlaseCard extends ConsumerWidget {
+  final bool _questionSelected = false;
   final Question questionObject;
-  const TrueFlaseCard({Key? key, required this.questionObject})
-      : super(key: key);
+  TrueFlaseCard({Key? key, required this.questionObject}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

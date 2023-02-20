@@ -58,8 +58,6 @@ class QuizView extends ConsumerWidget with Controller {
                             ),
                           ),
                         ],
-                        //     );
-                        //   },
                       )),
                 ),
                 Expanded(

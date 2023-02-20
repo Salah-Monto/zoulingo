@@ -7,6 +7,8 @@ mixin Controller {
   // final PageController controller = PageController();
   List<Question> questions = [
     Question(
+        image: "assets/images/vater.png",
+        article: "Der",
         word: "Vater",
         definition: 'أب',
         definitions: ['أب', 'أم', 'أخ', 'أخت'],
@@ -19,6 +21,8 @@ mixin Controller {
         ],
         options: ["Die Mutter", "Vater", "Das Kind", "Dos"]),
     Question(
+        image: "assets/images/vater.png",
+        article: "Das",
         word: "Haus",
         definition: 'المنزل',
         definitions: ['المنزل', 'الشارع', 'الجامعة', 'المدرسة'],
@@ -31,6 +35,8 @@ mixin Controller {
         ],
         options: ["Haus", "Cafe", "Bibliothek", "Fitnessstudio"]),
     Question(
+        image: "assets/images/vater.png",
+        article: "Der",
         word: "Hund",
         definition: 'الكلب',
         definitions: ['الكلب', 'القط', 'الزجاج', 'الجداول'],
