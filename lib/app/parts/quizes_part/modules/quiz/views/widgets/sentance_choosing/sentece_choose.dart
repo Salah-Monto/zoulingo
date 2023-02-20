@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:zoulingo/app/parts/main_part/modules/quiz/views/widgets/image_choosing/controller.dart';
+import 'package:zoulingo/app/parts/quizes_part/modules/quiz/views/widgets/image_choosing/controller.dart';
 import 'package:zoulingo/core/config/utils/colors.dart';
 
 import '../../../data/models/quistion_model.dart';

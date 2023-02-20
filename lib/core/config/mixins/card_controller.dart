@@ -1,6 +1,6 @@
 import 'package:swipable_stack/swipable_stack.dart';
 
-import '../../../app/parts/main_part/modules/quiz/data/models/quistion_model.dart';
+import '../../../app/parts/quizes_part/modules/quiz/data/models/quistion_model.dart';
 
 mixin Controller {
   final controller1 = SwipableStackController();

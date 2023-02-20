@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:zoulingo/app/parts/main_part/modules/home/view/widgets/lesson_sub_title_card.dart';
-import 'package:zoulingo/app/parts/main_part/modules/quiz/views/pages/quiz.view.dart';
+import 'package:zoulingo/app/parts/quizes_part/modules/main_page/view/widgets/lesson_sub_title_card.dart';
+import 'package:zoulingo/app/parts/quizes_part/modules/quiz/views/pages/quiz.view.dart';
 import 'package:zoulingo/core/config/utils/colors.dart';
-import 'package:get/get.dart';
 
-class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+class MainView extends StatelessWidget {
+  const MainView({super.key});
 
   @override
   Widget build(BuildContext context) {

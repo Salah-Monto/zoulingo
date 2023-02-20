@@ -2,9 +2,9 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:zoulingo/app/parts/main_part/modules/quiz/views/widgets/flash_card.dart';
-import 'package:zoulingo/app/parts/main_part/modules/quiz/views/widgets/image_choosing/choose_card.dart';
-import 'package:zoulingo/app/parts/main_part/modules/quiz/views/widgets/true_false/true_false.dart';
+import 'package:zoulingo/app/parts/quizes_part/modules/quiz/views/widgets/flash_card.dart';
+import 'package:zoulingo/app/parts/quizes_part/modules/quiz/views/widgets/image_choosing/choose_card.dart';
+import 'package:zoulingo/app/parts/quizes_part/modules/quiz/views/widgets/true_false/true_false.dart';
 
 import '../../../../../../../../core/config/mixins/card_controller.dart';
 import '../../../data/models/quistion_model.dart';

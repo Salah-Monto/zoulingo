@@ -3,7 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:zoulingo/core/config/theme/light_theme.dart';
 import 'package:zoulingo/core/config/utils/colors.dart';
-import 'app/parts/main_part/modules/home/view/page/home.view.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'app/HomeTabs/home_view.dart';
 // import 'package:device_preview/device_preview.dart';
 
 void main() {
@@ -20,11 +22,17 @@ class MyApp extends StatelessWidget {
       statusBarColor: AppColors.primary,
       statusBarBrightness: Brightness.light,
     ));
-    return MaterialApp(
-      title: 'Zoulingo',
-      theme: getThemDataLight(),
-      debugShowCheckedModeBanner: false,
-      home: const HomeView(),
-    );
+    return ScreenUtilInit(
+        designSize: const Size(360, 690),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (context, child) {
+          return MaterialApp(
+            title: 'Zoulingo',
+            theme: getThemDataLight(),
+            debugShowCheckedModeBanner: false,
+            home: HomePage(),
+          );
+        });
   }
 }
