@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
             title: 'Zoulingo',
             theme: getThemDataLight(),
             debugShowCheckedModeBanner: false,
-            home: HomePage(),
+            home: const HomePage(),
           );
         });
   }
