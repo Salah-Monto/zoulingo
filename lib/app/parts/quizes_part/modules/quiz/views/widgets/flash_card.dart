@@ -50,6 +50,12 @@ class FLashCardsView extends ConsumerWidget with Controller {
         SwipableStack(
           controller: controller,
           itemCount: flashCards.length,
+          onSwipeCompleted: (index, direction) {
+            if (direction == SwipeDirection.left) {
+              controller.cancelAction();
+              flashCards.add(flashCards[index]);
+            }
+          },
           builder: (context, swipeProperty) {
             return flashCards[swipeProperty.index];
           },

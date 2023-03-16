@@ -1,3 +1,5 @@
+// ignore_for_file: type_annotate_public_apis, non_constant_identifier_names, avoid_dynamic_calls
+
 import 'dart:math';
 
 import 'package:flutter/foundation.dart';
