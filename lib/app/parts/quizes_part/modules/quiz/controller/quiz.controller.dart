@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:zoulingo/app/parts/quizes_part/data/models/quistion_model.dart';
@@ -154,6 +155,7 @@ class CardQuiz extends ChangeNotifier with Controller {
   }
 
   void addWrongQuestion(
+    // ignore: avoid_positional_boolean_parameters
     bool correctAnswer,
     Question wrongQuestion,
     int qTypeNumber,
@@ -163,7 +165,9 @@ class CardQuiz extends ChangeNotifier with Controller {
       newWrongQuestions.add(wrongQuestion);
       wrongQuistions = newWrongQuestions;
       wrongQuestion.qType = qTypeNumber;
-      print(wrongQuistions.length);
+      if (kDebugMode) {
+        print(wrongQuistions.length);
+      }
     }
   }
 
