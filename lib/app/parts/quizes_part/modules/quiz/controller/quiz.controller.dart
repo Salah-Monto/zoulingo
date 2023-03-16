@@ -171,7 +171,7 @@ class CardQuiz extends ChangeNotifier with Controller {
     final bool correct = _selectedCardImage == questionObject1!.wrongImages![1];
     _result = correct ? "عاااش يابطل جواب صح " : "خطأ ياصديقي ";
     if (correct) {
-      wrongQuistions.remove(questionObject1!);
+      wrongQuistions.remove(questionObject1);
     }
     addWrongQuestion(correct, questionObject1!, 0);
     _buttonPressed = true;
