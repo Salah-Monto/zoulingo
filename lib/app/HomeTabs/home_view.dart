@@ -124,7 +124,7 @@ class Tab3 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return ColoredBox(
       color: Colors.green,
       child: Center(
         child: Text(

@@ -3,22 +3,21 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:zoulingo/app/parts/quizes_part/modules/quiz/controller/quiz.controller.dart';
 import 'package:zoulingo/core/config/utils/colors.dart';
 
-import '../../../../data/models/quistion_model.dart';
+import 'package:zoulingo/app/parts/quizes_part/data/models/quistion_model.dart';
 
 class ChooseWordSentenceCard extends ConsumerWidget {
   final Question questionObject;
-  const ChooseWordSentenceCard({Key? key, required this.questionObject})
-      : super(key: key);
+  const ChooseWordSentenceCard({super.key, required this.questionObject});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    double h = MediaQuery.of(context).size.height;
-    double w = MediaQuery.of(context).size.width;
+    final double h = MediaQuery.of(context).size.height;
+    final double w = MediaQuery.of(context).size.width;
     final controller = ref.watch(cardQuizController);
     controller.questionObject1 = questionObject;
     return Padding(
       padding: EdgeInsets.symmetric(vertical: h * 0.04),
-      child: Container(
+      child: DecoratedBox(
         decoration: BoxDecoration(
           color: AppColors.primary,
           borderRadius: BorderRadius.circular(30),

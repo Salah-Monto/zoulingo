@@ -6,18 +6,18 @@ import 'package:zoulingo/app/parts/quizes_part/modules/quiz/controller/quiz.cont
 import 'package:zoulingo/core/config/mixins/card_controller.dart';
 import 'package:zoulingo/core/config/utils/colors.dart';
 
-import '../../../../data/models/quistion_model.dart';
+import 'package:zoulingo/app/parts/quizes_part/data/models/quistion_model.dart';
 
 class FLashCardsView extends ConsumerWidget with Controller {
   FLashCardsView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    double h = MediaQuery.of(context).size.height;
-    double w = MediaQuery.of(context).size.width;
+    final double h = MediaQuery.of(context).size.height;
+    final double w = MediaQuery.of(context).size.width;
     final mainController = ref.watch(cardQuizController);
     List<Widget> generateFlashCards(List<Question> questions) {
-      var list = [
+      final list = [
         for (var i = 0; i < questions.length; i++)
           FlashCards(questionObject: questions[i]),
         SizedBox(
@@ -43,7 +43,7 @@ class FLashCardsView extends ConsumerWidget with Controller {
       return list;
     }
 
-    List<Widget> flashCards = generateFlashCards(questions);
+    final List<Widget> flashCards = generateFlashCards(questions);
     final controller = SwipableStackController();
     return Stack(
       children: [
@@ -61,14 +61,14 @@ class FLashCardsView extends ConsumerWidget with Controller {
 
 class FlashCards extends ConsumerWidget {
   final Question questionObject;
-  const FlashCards({Key? key, required this.questionObject}) : super(key: key);
+  const FlashCards({super.key, required this.questionObject});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.watch(cardQuizController);
     controller.questionObject1 = questionObject;
-    double h = MediaQuery.of(context).size.height;
-    double w = MediaQuery.of(context).size.width;
+    final double h = MediaQuery.of(context).size.height;
+    final double w = MediaQuery.of(context).size.width;
     return Padding(
       padding: EdgeInsets.symmetric(vertical: h * 0.03),
       child: FlashCard(

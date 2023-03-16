@@ -12,8 +12,8 @@ class QuizView extends ConsumerWidget with Controller {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.watch(cardQuizController);
-    List<Widget> questionTypes = controller.generateQuestionTypes(questions);
-    // controller.questionsLength = questionTypes.length;
+    final List<Widget> questionTypes =
+        controller.generateQuestionTypes(questions);
 
     return SafeArea(
       child: Scaffold(
@@ -24,7 +24,7 @@ class QuizView extends ConsumerWidget with Controller {
             OutlinedButton(onPressed: () {}, child: const Text("Skip")),
           ],
         ),
-        body: Container(
+        body: DecoratedBox(
           decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage("assets/images/logo.jpg"),

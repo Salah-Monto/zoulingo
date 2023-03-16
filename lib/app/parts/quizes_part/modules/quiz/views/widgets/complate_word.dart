@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 class ComplateWordCard extends StatelessWidget {
   const ComplateWordCard({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    double h = MediaQuery.of(context).size.height;
-    double w = MediaQuery.of(context).size.width;
+    final double h = MediaQuery.of(context).size.height;
+    final double w = MediaQuery.of(context).size.width;
     return Container(
       height: h * 0.7,
       width: w * 0.9,

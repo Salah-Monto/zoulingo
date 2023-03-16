@@ -5,12 +5,12 @@ class LessonSubTitle extends StatelessWidget {
   final bool done;
   final Color checkColor;
   const LessonSubTitle({
-    Key? key,
+    super.key,
     required this.w,
     required this.h,
     this.done = true,
     required this.checkColor,
-  }) : super(key: key);
+  });
 
   final double w;
   final double h;
@@ -20,7 +20,6 @@ class LessonSubTitle extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(6.0),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Padding(
             padding: EdgeInsets.symmetric(horizontal: w * 0.02),

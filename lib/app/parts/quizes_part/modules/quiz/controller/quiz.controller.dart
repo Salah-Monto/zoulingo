@@ -2,14 +2,13 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:zoulingo/app/parts/quizes_part/modules/quiz/views/widgets/flash_card.dart';
+import 'package:zoulingo/app/parts/quizes_part/data/models/quistion_model.dart';
 import 'package:zoulingo/app/parts/quizes_part/modules/quiz/views/widgets/choose_card.dart';
+import 'package:zoulingo/app/parts/quizes_part/modules/quiz/views/widgets/choose_word.dart';
+import 'package:zoulingo/app/parts/quizes_part/modules/quiz/views/widgets/flash_card.dart';
+import 'package:zoulingo/app/parts/quizes_part/modules/quiz/views/widgets/sentece_choose.dart';
 import 'package:zoulingo/app/parts/quizes_part/modules/quiz/views/widgets/true_false.dart';
-
-import '../../../../../../../../core/config/mixins/card_controller.dart';
-import '../../../data/models/quistion_model.dart';
-import '../views/widgets/sentece_choose.dart';
-import '../views/widgets/choose_word.dart';
+import 'package:zoulingo/core/config/mixins/card_controller.dart';
 
 final cardQuizController =
     ChangeNotifierProvider<CardQuiz>((ref) => CardQuiz());
@@ -35,9 +34,9 @@ class CardQuiz extends ChangeNotifier with Controller {
   // final int _questionNumber = 1;
 
   List<Widget> generateQuestionTypes(List<Question> questions) {
-    List<Question> wrongQuestions = wrongQuistions;
+    final List<Question> wrongQuestions = wrongQuistions;
 
-    var questionTypes = [
+    final questionTypes = [
       FLashCardsView(),
       for (var i = 0; i < questions.length; i++)
         ChooseCard(questionObject: questions[i]),
@@ -49,7 +48,7 @@ class CardQuiz extends ChangeNotifier with Controller {
         ChooseWordCard(questionObject: questions[i]),
     ];
     if (wrongQuistions.isNotEmpty) {
-      List<ConsumerWidget> wrongQuestionTypes = [];
+      final List<ConsumerWidget> wrongQuestionTypes = [];
       for (var i = 0; i < wrongQuestions.length; i++) {
         switch (wrongQuestions[i].qType) {
           case 0:
@@ -102,6 +101,7 @@ class CardQuiz extends ChangeNotifier with Controller {
     });
   }
 
+  // ignore: avoid_positional_boolean_parameters
   void checkAnswer(bool userAnswer) {
     // print(word + questionObject1!.word);
     if (_choiceMade) {
@@ -130,7 +130,7 @@ class CardQuiz extends ChangeNotifier with Controller {
   }
 
   String chooseRandomQuestion() {
-    int randomIndex = Random().nextInt(questions.length);
+    final int randomIndex = Random().nextInt(questions.length);
     word = questions[randomIndex].word;
     choiceMad = true;
     return word;
@@ -147,8 +147,8 @@ class CardQuiz extends ChangeNotifier with Controller {
   }
 
   void updateTheQnStatus() {
-    int len = questions.length * 4;
-    double qnumber = 1 / (len);
+    final int len = questions.length * 4;
+    final double qnumber = 1 / len;
     quistionItemLentgh += qnumber;
     notifyListeners();
   }
@@ -159,7 +159,7 @@ class CardQuiz extends ChangeNotifier with Controller {
     int qTypeNumber,
   ) {
     if (!correctAnswer) {
-      var newWrongQuestions = wrongQuistions.toList();
+      final newWrongQuestions = wrongQuistions.toList();
       newWrongQuestions.add(wrongQuestion);
       wrongQuistions = newWrongQuestions;
       wrongQuestion.qType = qTypeNumber;
@@ -168,7 +168,7 @@ class CardQuiz extends ChangeNotifier with Controller {
   }
 
   void submitAnswer() {
-    bool correct = _selectedCardImage == questionObject1!.wrongImages![1];
+    final bool correct = _selectedCardImage == questionObject1!.wrongImages![1];
     _result = correct ? "عاااش يابطل جواب صح " : "خطأ ياصديقي ";
     if (correct) {
       wrongQuistions.remove(questionObject1!);
@@ -199,7 +199,7 @@ class CardQuiz extends ChangeNotifier with Controller {
   }
 
   void submitAnswer2() {
-    bool correct1 = selectedAnswer == questionObject1!.definition;
+    final bool correct1 = selectedAnswer == questionObject1!.definition;
     _result = correct1 ? "عاااش يابطل جواب صح " : "غلط ياصديقي ";
     // if (correct1) {
     //   wrongQuistions.remove(questionObject1!);
@@ -212,7 +212,7 @@ class CardQuiz extends ChangeNotifier with Controller {
   }
 
   void submitAnswer1() {
-    bool correct = selectedAnswer == questionObject1!.word;
+    final bool correct = selectedAnswer == questionObject1!.word;
     _result = correct ? "عاااش يابطل جواب صح " : "خطأ ياصديقي ";
     // if (correct) {
     //   wrongQuistions.remove(questionObject1!);

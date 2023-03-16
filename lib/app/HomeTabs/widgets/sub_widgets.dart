@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../core/config/utils/colors.dart';
+import 'package:zoulingo/core/config/utils/colors.dart';
 
 class MyDivider extends StatelessWidget {
   const MyDivider({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +22,9 @@ class MyDivider extends StatelessWidget {
 class Avatar extends StatelessWidget {
   final double? width;
   const Avatar({
-    Key? key,
+    super.key,
     this.width,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

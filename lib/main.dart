@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:zoulingo/app/HomeTabs/home_view.dart';
 import 'package:zoulingo/core/config/theme/light_theme.dart';
 import 'package:zoulingo/core/config/utils/colors.dart';
-// import 'package:device_preview/device_preview.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

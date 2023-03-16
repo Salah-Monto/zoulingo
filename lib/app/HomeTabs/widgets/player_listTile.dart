@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:zoulingo/app/HomeTabs/widgets/sub_widgets.dart';
 
-import '../../../core/config/utils/colors.dart';
+import 'package:zoulingo/core/config/utils/colors.dart';
 
 SizedBox lsitPlayerItem() {
   return SizedBox(
