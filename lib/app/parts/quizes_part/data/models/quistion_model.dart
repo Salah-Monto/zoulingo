@@ -11,15 +11,16 @@ class Question {
   final List<String>? definitions;
   final String? definition;
 
-  Question(
-      {this.id,
-      required this.article,
-      required this.word,
-      this.qType,
-      this.question,
-      this.options,
-      this.image,
-      this.definition,
-      this.definitions,
-      this.wrongImages});
+  Question({
+    this.id,
+    required this.article,
+    required this.word,
+    this.qType,
+    this.question,
+    this.options,
+    this.image,
+    this.definition,
+    this.definitions,
+    this.wrongImages,
+  });
 }

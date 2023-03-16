@@ -33,9 +33,10 @@ class ChooseWordSentenceCard extends ConsumerWidget {
                 child: Text(
                   "إختر الإجابة الصحيحه",
                   style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                      fontSize: 15,
-                      // color: Colors.white70,
-                      color: AppColors.secondPrimary),
+                        fontSize: 15,
+                        // color: Colors.white70,
+                        color: AppColors.secondPrimary,
+                      ),
                 ),
               ),
               SizedBox(
@@ -53,51 +54,55 @@ class ChooseWordSentenceCard extends ConsumerWidget {
                 height: h * 0.07,
               ),
               Expanded(
-                  child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: Column(children: [
-                  ...controller.questionObject1!.options!
-                      .map((option) => Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              height: h * 0.07,
-                              width: w * 0.8,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                image: const DecorationImage(
-                                  image: AssetImage("assets/images/logo.jpg"),
-                                  fit: BoxFit.cover,
-                                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Column(
+                    children: [
+                      ...controller.questionObject1!.options!.map(
+                        (option) => Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            height: h * 0.07,
+                            width: w * 0.8,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              image: const DecorationImage(
+                                image: AssetImage("assets/images/logo.jpg"),
+                                fit: BoxFit.cover,
                               ),
-                              child: Center(
-                                child: RadioListTile(
-                                  value: option,
-                                  groupValue: controller.selectedAnswer,
-                                  activeColor: AppColors.primary,
-                                  dense: false,
-                                  onChanged: (value) {
-                                    controller.selectOption(value!);
-                                  },
-                                  title: Text(
-                                    option,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyText1!
-                                        .copyWith(color: AppColors.primary),
-                                  ),
+                            ),
+                            child: Center(
+                              child: RadioListTile(
+                                value: option,
+                                groupValue: controller.selectedAnswer,
+                                activeColor: AppColors.primary,
+                                dense: false,
+                                onChanged: (value) {
+                                  controller.selectOption(value!);
+                                },
+                                title: Text(
+                                  option,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText1!
+                                      .copyWith(color: AppColors.primary),
                                 ),
                               ),
                             ),
-                          )),
-                  Visibility(
-                    visible: controller.buttonPressed,
-                    child: Text(
-                      controller.result,
-                      style: Theme.of(context).textTheme.bodyText2,
-                    ),
+                          ),
+                        ),
+                      ),
+                      Visibility(
+                        visible: controller.buttonPressed,
+                        child: Text(
+                          controller.result,
+                          style: Theme.of(context).textTheme.bodyText2,
+                        ),
+                      ),
+                    ],
                   ),
-                ]),
-              ))
+                ),
+              )
             ],
           ),
         ),

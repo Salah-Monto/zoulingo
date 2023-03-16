@@ -17,15 +17,17 @@ SizedBox lsitPlayerItem() {
             Container(
               padding: EdgeInsets.all(4.sp),
               decoration: BoxDecoration(
-                  color: AppColors.primary,
-                  borderRadius: BorderRadius.circular(10.sp)),
+                color: AppColors.primary,
+                borderRadius: BorderRadius.circular(10.sp),
+              ),
               child: Text(
                 "1200 EXP",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    color: Colors.amber[700],
-                    fontSize: 15.sp,
-                    fontWeight: FontWeight.w700),
+                  color: Colors.amber[700],
+                  fontSize: 15.sp,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
             ),
             const Spacer(),
@@ -33,9 +35,10 @@ SizedBox lsitPlayerItem() {
               "خالد سعد",
               textAlign: TextAlign.center,
               style: TextStyle(
-                  color: AppColors.primary,
-                  fontSize: 15.sp,
-                  fontWeight: FontWeight.w700),
+                color: AppColors.primary,
+                fontSize: 15.sp,
+                fontWeight: FontWeight.w700,
+              ),
             ),
             SizedBox(
               width: 10.w,
@@ -50,9 +53,10 @@ SizedBox lsitPlayerItem() {
               "2",
               textAlign: TextAlign.center,
               style: TextStyle(
-                  color: AppColors.primary,
-                  fontSize: 30.sp,
-                  fontWeight: FontWeight.w700),
+                color: AppColors.primary,
+                fontSize: 30.sp,
+                fontWeight: FontWeight.w700,
+              ),
             ),
             SizedBox(
               width: 10.w,

@@ -73,7 +73,8 @@ class CardQuiz extends ChangeNotifier with Controller {
           case 3:
             {
               wrongQuestionTypes.add(
-                  ChooseWordSentenceCard(questionObject: wrongQuestions[i]));
+                ChooseWordSentenceCard(questionObject: wrongQuestions[i]),
+              );
             }
             break;
         }
@@ -86,7 +87,9 @@ class CardQuiz extends ChangeNotifier with Controller {
   void next() {
     Future.delayed(const Duration(seconds: 2), () {
       pageController.nextPage(
-          duration: const Duration(milliseconds: 400), curve: Curves.ease);
+        duration: const Duration(milliseconds: 400),
+        curve: Curves.ease,
+      );
       updateTheQnStatus();
       selectedAnswer = '';
       isSelected = false;
@@ -151,7 +154,10 @@ class CardQuiz extends ChangeNotifier with Controller {
   }
 
   void addWrongQuestion(
-      bool correctAnswer, Question wrongQuestion, int qTypeNumber) {
+    bool correctAnswer,
+    Question wrongQuestion,
+    int qTypeNumber,
+  ) {
     if (!correctAnswer) {
       var newWrongQuestions = wrongQuistions.toList();
       newWrongQuestions.add(wrongQuestion);

@@ -45,15 +45,17 @@ class FLashCardsView extends ConsumerWidget with Controller {
 
     List<Widget> flashCards = generateFlashCards(questions);
     final controller = SwipableStackController();
-    return Stack(children: [
-      SwipableStack(
-        controller: controller,
-        itemCount: flashCards.length,
-        builder: (context, swipeProperty) {
-          return flashCards[swipeProperty.index];
-        },
-      )
-    ]);
+    return Stack(
+      children: [
+        SwipableStack(
+          controller: controller,
+          itemCount: flashCards.length,
+          builder: (context, swipeProperty) {
+            return flashCards[swipeProperty.index];
+          },
+        )
+      ],
+    );
   }
 }
 
@@ -100,10 +102,14 @@ class FlashCards extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Image.asset(controller.questionObject1!.image!),
-              Text(controller.questionObject1!.definition!,
-                  style: Theme.of(context).textTheme.headline5),
-              Text(" 'والدي في العمل' ",
-                  style: Theme.of(context).textTheme.headline5),
+              Text(
+                controller.questionObject1!.definition!,
+                style: Theme.of(context).textTheme.headline5,
+              ),
+              Text(
+                " 'والدي في العمل' ",
+                style: Theme.of(context).textTheme.headline5,
+              ),
             ],
           ),
         ),

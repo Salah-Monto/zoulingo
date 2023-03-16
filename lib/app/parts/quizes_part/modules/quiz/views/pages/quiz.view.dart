@@ -38,40 +38,44 @@ class QuizView extends ConsumerWidget with Controller {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Container(
-                      width: double.infinity,
-                      height: 35,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                            color: const Color(0xFF3F4768), width: 3),
-                        borderRadius: BorderRadius.circular(50),
+                    width: double.infinity,
+                    height: 35,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: const Color(0xFF3F4768),
+                        width: 3,
                       ),
-                      child: Stack(
-                        children: [
-                          LayoutBuilder(
-                            builder: (context, constraints) => Container(
-                              width: constraints.maxWidth *
-                                  controller.quistionItemLentgh,
-                              decoration: BoxDecoration(
-                                color: AppColors.babyBlue,
-                                borderRadius: BorderRadius.circular(50),
-                              ),
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                    child: Stack(
+                      children: [
+                        LayoutBuilder(
+                          builder: (context, constraints) => Container(
+                            width: constraints.maxWidth *
+                                controller.quistionItemLentgh,
+                            decoration: BoxDecoration(
+                              color: AppColors.babyBlue,
+                              borderRadius: BorderRadius.circular(50),
                             ),
                           ),
-                        ],
-                      )),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
                 Expanded(
                   child: PageView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                      controller: controller.pageController,
-                      // onPageChanged: controller.updateTheQnNum,
-                      itemCount: questionTypes.length,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          child: questionTypes[index],
-                        );
-                      }),
+                    physics: const NeverScrollableScrollPhysics(),
+                    controller: controller.pageController,
+                    // onPageChanged: controller.updateTheQnNum,
+                    itemCount: questionTypes.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: questionTypes[index],
+                      );
+                    },
+                  ),
                 ),
               ],
             ),

@@ -34,9 +34,10 @@ class TrueFlaseCard extends ConsumerWidget {
                 child: Text(
                   "صح ام خطأ",
                   style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                      fontSize: 15,
-                      // color: Colors.white70,
-                      color: AppColors.secondPrimary),
+                        fontSize: 15,
+                        // color: Colors.white70,
+                        color: AppColors.secondPrimary,
+                      ),
                 ),
               ),
               // Image.asset("assets/images/vater.png"),

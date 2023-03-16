@@ -4,13 +4,13 @@ import 'package:zoulingo/core/config/utils/colors.dart';
 class LessonSubTitle extends StatelessWidget {
   final bool done;
   final Color checkColor;
-  const LessonSubTitle(
-      {Key? key,
-      required this.w,
-      required this.h,
-      this.done = true,
-      required this.checkColor})
-      : super(key: key);
+  const LessonSubTitle({
+    Key? key,
+    required this.w,
+    required this.h,
+    this.done = true,
+    required this.checkColor,
+  }) : super(key: key);
 
   final double w;
   final double h;
@@ -58,16 +58,18 @@ class LessonSubTitle extends StatelessWidget {
               Text(
                 "Lektion 1",
                 style: TextStyle(
-                    color: done ? Colors.black : Colors.black54,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500),
+                  color: done ? Colors.black : Colors.black54,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
               const Text(
                 "Hospital and kranrkheit",
                 style: TextStyle(
-                    color: Colors.black54,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400),
+                  color: Colors.black54,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
             ],
           ),

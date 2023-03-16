@@ -51,7 +51,9 @@ class ChooseCard extends ConsumerWidget {
         height: h * 0.7,
         width: w * 0.9,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30), color: AppColors.primary),
+          borderRadius: BorderRadius.circular(30),
+          color: AppColors.primary,
+        ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
           child: Column(
@@ -62,9 +64,10 @@ class ChooseCard extends ConsumerWidget {
                 child: Text(
                   "إختر الإجابة الصحيحه",
                   style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                      fontSize: 15,
-                      // color: Colors.white70,
-                      color: AppColors.secondPrimary),
+                        fontSize: 15,
+                        // color: Colors.white70,
+                        color: AppColors.secondPrimary,
+                      ),
                 ),
               ),
               SizedBox(
@@ -92,8 +95,10 @@ class ChooseCard extends ConsumerWidget {
                   itemBuilder: (context, index) {
                     return InkWell(
                       onTap: () {
-                        controller1.onCardTapped(index,
-                            controller1.questionObject1!.wrongImages![index]);
+                        controller1.onCardTapped(
+                          index,
+                          controller1.questionObject1!.wrongImages![index],
+                        );
                       },
                       child: CardChoice(
                         isActive: controller1.selectedIndex == index,
