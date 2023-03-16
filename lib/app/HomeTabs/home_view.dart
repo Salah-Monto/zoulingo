@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:zoulingo/app/HomeTabs/home_controller.dart';
+import 'package:zoulingo/app/HomeTabs/widgets/player_listTile.dart';
+import 'package:zoulingo/app/HomeTabs/widgets/sub_widgets.dart';
+import 'package:zoulingo/core/config/utils/colors.dart';
+
+import '../parts/quizes_part/modules/main_page/view/page/home.view.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -21,9 +26,9 @@ class HomePage extends StatelessWidget {
 
         return IndexedStack(
           index: currentIndex,
-          children: [
-            Tab1(),
-            Tab2(),
+          children: const [
+            MainView(),
+            ChalengeTab(),
             Tab3(),
           ],
         );
@@ -51,12 +56,12 @@ class HomePage extends StatelessWidget {
   List<BottomNavigationBarItem> _navBarsItems() {
     return [
       const BottomNavigationBarItem(
-        icon: Icon(Icons.home),
-        label: 'Tab 1',
+        icon: Icon(Icons.quiz_outlined),
+        label: 'التدريبات',
       ),
       const BottomNavigationBarItem(
-        icon: Icon(Icons.search),
-        label: 'Tab 2',
+        icon: Icon(Icons.accessibility_new),
+        label: 'الدوري',
       ),
       const BottomNavigationBarItem(
         icon: Icon(Icons.person),
@@ -66,37 +71,54 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class Tab1 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.blue,
-      child: Center(
-        child: Text(
-          'Tab 1',
-          style: TextStyle(color: Colors.white, fontSize: 20.sp),
-        ),
-      ),
-    );
-  }
-}
+class ChalengeTab extends StatelessWidget {
+  const ChalengeTab({super.key});
 
-class Tab2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.red,
-      child: Center(
-        child: Text(
-          'Tab 2',
-          style: TextStyle(color: Colors.white, fontSize: 20.sp),
-        ),
+    return SingleChildScrollView(
+      child: SafeArea(
+        child:
+            Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+          const Text(
+            "دوري الأساطير",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                color: AppColors.primary,
+                fontSize: 30,
+                fontWeight: FontWeight.bold),
+          ),
+          Image.network(
+            "https://seeklogo.com/images/M/mobile-legends-bang-bang-logo-71C2E06F9D-seeklogo.com.png",
+          ),
+          const MyDivider(),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              "المركز الأول ",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  color: AppColors.primary,
+                  fontSize: 20.sp,
+                  fontWeight: FontWeight.w800),
+            ),
+          ),
+          SizedBox(
+            height: 5.h,
+          ),
+          theFirstCard(),
+          lsitPlayerItem(),
+          lsitPlayerItem(),
+          lsitPlayerItem()
+        ]),
       ),
     );
   }
 }
 
 class Tab3 extends StatelessWidget {
+  const Tab3({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(

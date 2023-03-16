@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:zoulingo/app/parts/quizes_part/modules/quiz/views/widgets/image_choosing/controller.dart';
+import 'package:zoulingo/app/parts/quizes_part/modules/quiz/controller/quiz.controller.dart';
 import 'package:zoulingo/core/config/utils/colors.dart';
 
-import '../../../data/models/quistion_model.dart';
+import '../../../../data/models/quistion_model.dart';
 
-class ChooseWordCard extends ConsumerWidget {
+class ChooseWordSentenceCard extends ConsumerWidget {
   final Question questionObject;
-  const ChooseWordCard({Key? key, required this.questionObject})
+  const ChooseWordSentenceCard({Key? key, required this.questionObject})
       : super(key: key);
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
-    // final controller = ref.watch(wordQuizController);
     final controller = ref.watch(cardQuizController);
     controller.questionObject1 = questionObject;
     return Padding(
@@ -42,21 +42,21 @@ class ChooseWordCard extends ConsumerWidget {
                 height: h * 0.05,
               ),
               Text(
-                controller.questionObject1!.word,
-                style: Theme.of(context).textTheme.headline5,
+                controller.questionObject1!.question!,
+                style: Theme.of(context).textTheme.bodyText1,
               ),
               const Divider(
                 indent: 20,
                 endIndent: 20,
               ),
               SizedBox(
-                height: h * 0.01,
+                height: h * 0.07,
               ),
               Expanded(
                   child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: Column(children: [
-                  ...controller.questionObject1!.definitions!
+                  ...controller.questionObject1!.options!
                       .map((option) => Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
@@ -76,7 +76,7 @@ class ChooseWordCard extends ConsumerWidget {
                                   activeColor: AppColors.primary,
                                   dense: false,
                                   onChanged: (value) {
-                                    controller.selectOption2(value!);
+                                    controller.selectOption(value!);
                                   },
                                   title: Text(
                                     option,

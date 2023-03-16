@@ -2,11 +2,11 @@ import 'package:flash_card/flash_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:swipable_stack/swipable_stack.dart';
-import 'package:zoulingo/app/parts/quizes_part/modules/quiz/views/widgets/image_choosing/controller.dart';
+import 'package:zoulingo/app/parts/quizes_part/modules/quiz/controller/quiz.controller.dart';
 import 'package:zoulingo/core/config/mixins/card_controller.dart';
 import 'package:zoulingo/core/config/utils/colors.dart';
 
-import '../../data/models/quistion_model.dart';
+import '../../../../data/models/quistion_model.dart';
 
 class FLashCardsView extends ConsumerWidget with Controller {
   FLashCardsView({super.key});

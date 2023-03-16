@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:zoulingo/app/parts/quizes_part/modules/quiz/controller/quiz.controller.dart';
 import 'package:zoulingo/core/config/utils/colors.dart';
 
-import '../../../data/models/quistion_model.dart';
-import '../image_choosing/controller.dart';
+import '../../../../data/models/quistion_model.dart';
 
 class TrueFlaseCard extends ConsumerWidget {
   final bool _questionSelected = false;
   final Question questionObject;
-  TrueFlaseCard({Key? key, required this.questionObject}) : super(key: key);
+  const TrueFlaseCard({Key? key, required this.questionObject})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

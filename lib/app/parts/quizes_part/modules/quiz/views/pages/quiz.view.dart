@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:zoulingo/app/parts/quizes_part/modules/quiz/controller/quiz.controller.dart';
 import 'package:zoulingo/core/config/mixins/card_controller.dart';
 import 'package:zoulingo/core/config/utils/colors.dart';
-import '../widgets/image_choosing/controller.dart';
 // import '../widgets/smilerties.dart';
 
 // ignore: must_be_immutable
