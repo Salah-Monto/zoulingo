@@ -233,9 +233,15 @@ class CardQuiz extends ChangeNotifier with Controller {
   }
 
   Future speak(Question question) async {
-    print('${question.article} ${question.word}');
     await flutterTts.setLanguage("de-DE");
     await flutterTts.speak('${question.article} ${question.word}');
+  }
+
+  List<Widget> addNewCard(int index, List<Widget> flashCards) {
+    final List<Widget> flashCardsList = [];
+    flashCardsList.add(flashCards[index]);
+    print(flashCardsList.length);
+    return flashCardsList;
   }
 
   int get selectedIndex => _selectedIndex;

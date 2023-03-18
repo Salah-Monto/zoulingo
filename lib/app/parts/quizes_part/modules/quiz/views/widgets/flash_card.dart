@@ -1,82 +1,41 @@
 import 'package:flash_card/flash_card.dart';
+import 'package:flashcardplus/flashcardplus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:swipable_stack/swipable_stack.dart';
 import 'package:zoulingo/app/parts/quizes_part/data/models/quistion_model.dart';
 import 'package:zoulingo/app/parts/quizes_part/modules/quiz/controller/quiz.controller.dart';
 import 'package:zoulingo/core/config/mixins/card_controller.dart';
 import 'package:zoulingo/core/config/utils/colors.dart';
-// ignore: must_be_immutable
-// class FLashCardsView extends ConsumerWidget with Controller {
-//   FLashCardsView({super.key});
-
-//   @override
-//   Widget build(BuildContext context, WidgetRef ref) {
-//     List<Widget> generateFlashCards(List<Question> questions) {
-//       final list = [
-//         for (var i = 0; i < questions.length; i++)
-//           FlashCards(questionObject: questions[i]),
-//       ];
-//       return list;
-//     }
-
-//     final List<Widget> flashCards = generateFlashCards(questions);
-//     final controller = SwipableStackController();
-//     return Stack(
-//       children: [
-//         SwipableStack(
-//           controller: controller,
-//           itemCount: flashCards.length,
-//           onSwipeCompleted: (index, direction) {
-//             if (direction == SwipeDirection.left) {}
-//           },
-//           builder: (context, swipeProperty) {
-//             return flashCards[swipeProperty.index];
-//           },
-//         )
-//       ],
-//     );
-//   }
-// }
 
 // ignore: must_be_immutable
-class FLashCardsView extends StatefulWidget with Controller {
+class FLashCardsView extends ConsumerWidget with Controller {
   FLashCardsView({super.key});
 
   @override
-  State<FLashCardsView> createState() => _FLashCardsViewState();
-}
-
-class _FLashCardsViewState extends State<FLashCardsView> {
-  @override
-  Widget build(
-    BuildContext context,
-  ) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final mainController = ref.watch(cardQuizController);
     List<Widget> generateFlashCards(List<Question> questions) {
       final list = [
         for (var i = 0; i < questions.length; i++)
-          FlashCards(questionObject: questions[i]),
+          [FlashCards(questionObject: questions[i])], // wrap in list
       ];
-      return list;
+      return list
+          .expand((element) => element)
+          .toList(); // flatten list of lists
     }
 
-    final List<Widget> flashCards = generateFlashCards(widget.questions);
-    final controller = SwipableStackController();
+    final List<Widget> flashCards = generateFlashCards(questions);
+    final FlashCardController controller = FlashCardController();
     return Stack(
       children: [
-        SwipableStack(
+        FlashCardPlus(
+          cards: flashCards,
           controller: controller,
-          itemCount: flashCards.length,
-          onSwipeCompleted: (index, direction) {
-            if (direction == SwipeDirection.left) {
-              setState(() {
-                flashCards.add(flashCards[index]);
-                controller.reset();
-              });
+          size: const Size(500, 700),
+          onForward: (index, info) {
+            if (info.direction == SwipeDirection.left) {
+              controller.append(mainController.addNewCard(index, flashCards));
             }
-          },
-          builder: (context, swipeProperty) {
-            return flashCards[swipeProperty.index];
           },
         )
       ],
@@ -154,3 +113,13 @@ class FlashCards extends ConsumerWidget {
     );
   }
 }
+// SwipableStack(
+        //   controller: controller,
+        //   itemCount: flashCards.length,
+        //   onSwipeCompleted: (index, direction) {
+        //     if (direction == SwipeDirection.left) {}
+        //   },
+        //   builder: (context, swipeProperty) {
+        //     return flashCards[swipeProperty.index];
+        //   },
+        // )
