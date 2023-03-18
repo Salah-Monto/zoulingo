@@ -1,49 +1,67 @@
 import 'package:flash_card/flash_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:swipable_stack/swipable_stack.dart';
 import 'package:zoulingo/app/parts/quizes_part/data/models/quistion_model.dart';
 import 'package:zoulingo/app/parts/quizes_part/modules/quiz/controller/quiz.controller.dart';
 import 'package:zoulingo/core/config/mixins/card_controller.dart';
 import 'package:zoulingo/core/config/utils/colors.dart';
+// ignore: must_be_immutable
+// class FLashCardsView extends ConsumerWidget with Controller {
+//   FLashCardsView({super.key});
+
+//   @override
+//   Widget build(BuildContext context, WidgetRef ref) {
+//     List<Widget> generateFlashCards(List<Question> questions) {
+//       final list = [
+//         for (var i = 0; i < questions.length; i++)
+//           FlashCards(questionObject: questions[i]),
+//       ];
+//       return list;
+//     }
+
+//     final List<Widget> flashCards = generateFlashCards(questions);
+//     final controller = SwipableStackController();
+//     return Stack(
+//       children: [
+//         SwipableStack(
+//           controller: controller,
+//           itemCount: flashCards.length,
+//           onSwipeCompleted: (index, direction) {
+//             if (direction == SwipeDirection.left) {}
+//           },
+//           builder: (context, swipeProperty) {
+//             return flashCards[swipeProperty.index];
+//           },
+//         )
+//       ],
+//     );
+//   }
+// }
 
 // ignore: must_be_immutable
-class FLashCardsView extends ConsumerWidget with Controller {
+class FLashCardsView extends StatefulWidget with Controller {
   FLashCardsView({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final double h = MediaQuery.of(context).size.height;
-    final double w = MediaQuery.of(context).size.width;
-    final mainController = ref.watch(cardQuizController);
+  State<FLashCardsView> createState() => _FLashCardsViewState();
+}
+
+class _FLashCardsViewState extends State<FLashCardsView> {
+  @override
+  Widget build(
+    BuildContext context,
+  ) {
     List<Widget> generateFlashCards(List<Question> questions) {
       final list = [
         for (var i = 0; i < questions.length; i++)
           FlashCards(questionObject: questions[i]),
-        SizedBox(
-          height: h * 0.81,
-          width: w * 0.9,
-          child: Card(
-            child: Center(
-              child: GestureDetector(
-                onTap: mainController.next,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    "التالي",
-                    style: Theme.of(context).textTheme.headline5,
-                  ),
-                ),
-              ),
-            ),
-          ),
-        )
       ];
-
       return list;
     }
 
-    final List<Widget> flashCards = generateFlashCards(questions);
+    final List<Widget> flashCards = generateFlashCards(widget.questions);
     final controller = SwipableStackController();
     return Stack(
       children: [
@@ -52,8 +70,10 @@ class FLashCardsView extends ConsumerWidget with Controller {
           itemCount: flashCards.length,
           onSwipeCompleted: (index, direction) {
             if (direction == SwipeDirection.left) {
-              controller.cancelAction();
-              flashCards.add(flashCards[index]);
+              setState(() {
+                flashCards.add(flashCards[index]);
+                controller.reset();
+              });
             }
           },
           builder: (context, swipeProperty) {
@@ -71,6 +91,12 @@ class FlashCards extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final FlutterTts flutterTts = FlutterTts();
+    Future _speak(String text) async {
+      await flutterTts.setLanguage("de-DE");
+      await flutterTts.speak(text);
+    }
+
     final controller = ref.watch(cardQuizController);
     controller.questionObject1 = questionObject;
     final double h = MediaQuery.of(context).size.height;
@@ -100,6 +126,12 @@ class FlashCards extends ConsumerWidget {
                 " 'mein vater ist im werk' ",
                 style: Theme.of(context).textTheme.headline5,
               ),
+              InkWell(
+                onTap: () {
+                  _speak(controller.questionObject1!.word);
+                },
+                child: const Icon(Icons.record_voice_over),
+              )
             ],
           ),
         ),

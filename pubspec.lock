@@ -128,6 +128,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_tts:
+    dependency: "direct main"
+    description:
+      name: flutter_tts
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.6.3"
   flutter_web_plugins:
     dependency: transitive
     description: flutter
@@ -423,8 +430,8 @@ packages:
     description:
       path: "."
       ref: develop
-      resolved-ref: "6a15a97403d8c4603d4c022d973dac0edc82c251"
-      url: "https://github.com/maxzod/flutter_swipable_stack.git"
+      resolved-ref: b4e71aa5a686346364da0a63f60b4fea247bbc6e
+      url: "https://github.com/Osama-creator/flutter_swipable_stack.git"
     source: git
     version: "2.0.0"
   term_glyph:
