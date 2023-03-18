@@ -1,7 +1,6 @@
 import 'package:flash_card/flash_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_tts/flutter_tts.dart';
 import 'package:swipable_stack/swipable_stack.dart';
 import 'package:zoulingo/app/parts/quizes_part/data/models/quistion_model.dart';
 import 'package:zoulingo/app/parts/quizes_part/modules/quiz/controller/quiz.controller.dart';
@@ -91,12 +90,6 @@ class FlashCards extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final FlutterTts flutterTts = FlutterTts();
-    Future _speak(String text) async {
-      await flutterTts.setLanguage("de-DE");
-      await flutterTts.speak(text);
-    }
-
     final controller = ref.watch(cardQuizController);
     controller.questionObject1 = questionObject;
     final double h = MediaQuery.of(context).size.height;
@@ -128,9 +121,15 @@ class FlashCards extends ConsumerWidget {
               ),
               InkWell(
                 onTap: () {
-                  _speak(controller.questionObject1!.word);
+                  controller.speak(
+                    controller.questionObject1!,
+                  );
                 },
-                child: const Icon(Icons.record_voice_over),
+                child: const Icon(
+                  Icons.record_voice_over,
+                  size: 40,
+                  color: AppColors.white,
+                ),
               )
             ],
           ),

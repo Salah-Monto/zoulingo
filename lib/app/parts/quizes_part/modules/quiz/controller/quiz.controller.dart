@@ -5,6 +5,7 @@ import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:zoulingo/app/parts/quizes_part/data/models/quistion_model.dart';
 import 'package:zoulingo/app/parts/quizes_part/modules/quiz/views/widgets/choose_card.dart';
 import 'package:zoulingo/app/parts/quizes_part/modules/quiz/views/widgets/choose_word.dart';
@@ -18,6 +19,7 @@ final cardQuizController =
 
 class CardQuiz extends ChangeNotifier with Controller {
   final PageController pageController;
+  final FlutterTts flutterTts = FlutterTts();
   List<Question> wrongQuistions = [];
   List<Widget> wrongQuistionsType = [];
   CardQuiz() : pageController = PageController();
@@ -228,6 +230,12 @@ class CardQuiz extends ChangeNotifier with Controller {
     addWrongQuestion(correct, questionObject1!, 3);
     next();
     notifyListeners();
+  }
+
+  Future speak(Question question) async {
+    print('${question.article} ${question.word}');
+    await flutterTts.setLanguage("de-DE");
+    await flutterTts.speak('${question.article} ${question.word}');
   }
 
   int get selectedIndex => _selectedIndex;
