@@ -35,6 +35,7 @@ class CardQuiz extends ChangeNotifier with Controller {
   int numberOfPage = 0;
   String word = "";
   bool choiceMad = false;
+  List<Widget> flashCardsList = [];
 
   // final int _questionNumber = 1;
 
@@ -238,10 +239,24 @@ class CardQuiz extends ChangeNotifier with Controller {
   }
 
   List<Widget> addNewCard(int index, List<Widget> flashCards) {
-    final List<Widget> flashCardsList = [];
-    flashCardsList.add(flashCards[index]);
-    print(flashCardsList.length);
-    return flashCardsList;
+    flashCardsList.add(flashCards[index - 1]);
+    flashCards.add(flashCards[index]);
+
+    final List<Widget> cards = flashCardsList.toSet().toList();
+    return cards;
+  }
+
+  void addCard(int index, List<Widget> flashCards) {
+    flashCards.add(flashCards[index]);
+    notifyListeners();
+  }
+
+  List<Widget> removeCard(int index, List<Widget> flashCards) {
+    flashCardsList.remove(flashCards[index - 1]);
+    flashCards.remove(flashCards[index - 1]);
+
+    final List<Widget> cards = flashCardsList.toSet().toList();
+    return cards;
   }
 
   int get selectedIndex => _selectedIndex;

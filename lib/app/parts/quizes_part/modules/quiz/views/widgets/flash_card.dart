@@ -26,19 +26,21 @@ class FLashCardsView extends ConsumerWidget with Controller {
 
     final List<Widget> flashCards = generateFlashCards(questions);
     final FlashCardController controller = FlashCardController();
-    return Stack(
-      children: [
-        FlashCardPlus(
-          cards: flashCards,
-          controller: controller,
-          size: const Size(500, 700),
-          onForward: (index, info) {
-            if (info.direction == SwipeDirection.left) {
-              controller.append(mainController.addNewCard(index, flashCards));
-            }
-          },
-        )
-      ],
+    return FlashCardPlus(
+      cards: flashCards,
+      controller: controller,
+      size: const Size(500, 700),
+      onEnd: () => mainController.next(),
+      onForward: (index, info) {
+        if (info.direction == SwipeDirection.left) {
+          mainController.addCard(index, flashCards);
+
+          // ignore: avoid_dynamic_calls
+          controller.append(mainController.addNewCard(index, flashCards));
+        } else if (info.direction == SwipeDirection.right) {
+          // mainController.removeCard(index, flashCards);
+        }
+      },
     );
   }
 }
@@ -76,7 +78,7 @@ class FlashCards extends ConsumerWidget {
               ),
               Text(
                 " 'mein vater ist im werk' ",
-                style: Theme.of(context).textTheme.headline5,
+                style: Theme.of(context).textTheme.headline6,
               ),
               InkWell(
                 onTap: () {

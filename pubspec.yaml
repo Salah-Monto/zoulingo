@@ -21,6 +21,7 @@ dependencies:
   persistent_bottom_nav_bar: ^5.0.2
   flutter_tts: 
   flashcardplus: ^0.0.2
+  swipeable_card_stack: ^0.0.5
   swipable_stack:
     git:
       url: https://github.com/Osama-creator/flutter_swipable_stack.git
