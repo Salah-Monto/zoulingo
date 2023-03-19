@@ -25,20 +25,19 @@ class FLashCardsView extends ConsumerWidget with Controller {
     }
 
     final List<Widget> flashCards = generateFlashCards(questions);
-    final FlashCardController controller = FlashCardController();
+    final FlashCardController cardController = FlashCardController();
+
     return FlashCardPlus(
       cards: flashCards,
-      controller: controller,
+      controller: cardController,
       size: const Size(500, 700),
       onEnd: () => mainController.next(),
       onForward: (index, info) {
         if (info.direction == SwipeDirection.left) {
-          mainController.addCard(index, flashCards);
-
+          print(index - 1);
+          final list = List<Widget>.from([flashCards[index - 1]]);
           // ignore: avoid_dynamic_calls
-          controller.append(mainController.addNewCard(index, flashCards));
-        } else if (info.direction == SwipeDirection.right) {
-          // mainController.removeCard(index, flashCards);
+          cardController.append(list);
         }
       },
     );
@@ -115,13 +114,3 @@ class FlashCards extends ConsumerWidget {
     );
   }
 }
-// SwipableStack(
-        //   controller: controller,
-        //   itemCount: flashCards.length,
-        //   onSwipeCompleted: (index, direction) {
-        //     if (direction == SwipeDirection.left) {}
-        //   },
-        //   builder: (context, swipeProperty) {
-        //     return flashCards[swipeProperty.index];
-        //   },
-        // )
