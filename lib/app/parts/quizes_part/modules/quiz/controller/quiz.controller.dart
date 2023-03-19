@@ -238,28 +238,6 @@ class CardQuiz extends ChangeNotifier with Controller {
     await flutterTts.speak('${question.article} ${question.word}');
   }
 
-  List<Widget> addNewCard(int index, List<Widget> flashCards) {
-    flashCardsList.add(flashCards[index - 1]);
-    flashCards.add(flashCards[index]);
-    print(flashCardsList.length);
-    final List<Widget> cards = flashCardsList.toSet().toList();
-    return cards;
-  }
-
-  List<Widget> removeCard(int index, List<Widget> flashCards) {
-    flashCardsList.remove(flashCards[index - 1]);
-    flashCards.remove(flashCards[index]);
-    print(flashCardsList.length);
-    final List<Widget> cards = flashCardsList.toSet().toList();
-    return cards;
-  }
-
-  int i = 0;
-  void addCounter() {
-    i++;
-    notifyListeners();
-  }
-
   int get selectedIndex => _selectedIndex;
   String get selectedCardImage => _selectedCardImage;
   bool get buttonPressed => _buttonPressed;
