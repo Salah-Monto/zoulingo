@@ -254,6 +254,12 @@ class CardQuiz extends ChangeNotifier with Controller {
     return cards;
   }
 
+  int i = 0;
+  void addCounter() {
+    i++;
+    notifyListeners();
+  }
+
   int get selectedIndex => _selectedIndex;
   String get selectedCardImage => _selectedCardImage;
   bool get buttonPressed => _buttonPressed;

@@ -30,14 +30,20 @@ class FLashCardsView extends ConsumerWidget with Controller {
     return FlashCardPlus(
       cards: flashCards,
       controller: cardController,
-      size: const Size(500, 700),
       onEnd: () => mainController.next(),
       onForward: (index, info) {
         if (info.direction == SwipeDirection.left) {
-          print(index - 1);
-          final list = List<Widget>.from([flashCards[index - 1]]);
-          // ignore: avoid_dynamic_calls
-          cardController.append(list);
+          if (cardController.index > flashCards.length) {
+            print(cardController.index);
+          } else {
+            final list =
+                List<Widget>.from([flashCards[cardController.index - 1]]);
+            flashCards.add(flashCards[cardController.index - 1]);
+            print(cardController.index - 1);
+
+            // ignore: avoid_dynamic_calls
+            cardController.append(list);
+          }
         }
       },
     );
