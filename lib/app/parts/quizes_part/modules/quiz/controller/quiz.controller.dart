@@ -241,20 +241,15 @@ class CardQuiz extends ChangeNotifier with Controller {
   List<Widget> addNewCard(int index, List<Widget> flashCards) {
     flashCardsList.add(flashCards[index - 1]);
     flashCards.add(flashCards[index]);
-
+    print(flashCardsList.length);
     final List<Widget> cards = flashCardsList.toSet().toList();
     return cards;
   }
 
-  void addCard(int index, List<Widget> flashCards) {
-    flashCards.add(flashCards[index]);
-    notifyListeners();
-  }
-
   List<Widget> removeCard(int index, List<Widget> flashCards) {
     flashCardsList.remove(flashCards[index - 1]);
-    flashCards.remove(flashCards[index - 1]);
-
+    flashCards.remove(flashCards[index]);
+    print(flashCardsList.length);
     final List<Widget> cards = flashCardsList.toSet().toList();
     return cards;
   }
