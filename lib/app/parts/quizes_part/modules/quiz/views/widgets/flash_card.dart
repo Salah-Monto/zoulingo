@@ -36,7 +36,6 @@ class FLashCardsView extends ConsumerWidget with Controller {
           final list =
               List<Widget>.from([flashCards[cardController.index - 1]]);
           flashCards.add(flashCards[cardController.index - 1]);
-
           // ignore: avoid_dynamic_calls
           cardController.append(list);
         }
