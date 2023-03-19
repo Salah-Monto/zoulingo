@@ -33,17 +33,12 @@ class FLashCardsView extends ConsumerWidget with Controller {
       onEnd: () => mainController.next(),
       onForward: (index, info) {
         if (info.direction == SwipeDirection.left) {
-          if (cardController.index > flashCards.length) {
-            print(cardController.index);
-          } else {
-            final list =
-                List<Widget>.from([flashCards[cardController.index - 1]]);
-            flashCards.add(flashCards[cardController.index - 1]);
-            print(cardController.index - 1);
+          final list =
+              List<Widget>.from([flashCards[cardController.index - 1]]);
+          flashCards.add(flashCards[cardController.index - 1]);
 
-            // ignore: avoid_dynamic_calls
-            cardController.append(list);
-          }
+          // ignore: avoid_dynamic_calls
+          cardController.append(list);
         }
       },
     );
